@@ -55,7 +55,7 @@ export const RESUME_DATA = {
       start: "2021",
       end: "2023",
       description:
-        "Implemented new features, mentored interns and junior developers and handled customer impacting issues. Tech: Spring, Angular, Apache YARN, AWS"
+        "Implemented new features, mentored interns and junior developers and handled customer impacting issues. Tech: Spring, Angular, Apache YARN, AWS",
     },
     {
       company: "VeCrear",
@@ -65,7 +65,7 @@ export const RESUME_DATA = {
       start: "2019",
       end: "2020",
       description:
-        "Developed automated data pipelines to generate performance analysis reports. Tech: Python, Pandas, Apache Airflow"
+        "Developed automated data pipelines to generate performance analysis reports. Tech: Python, Pandas, Apache Airflow",
     },
   ],
   skills: [
@@ -84,13 +84,9 @@ export const RESUME_DATA = {
   projects: [
     {
       title: "Speech-To-Text",
-      techStack: [
-        "Spring",
-        "Swing",
-        "OpenAI",
-        "PostgreSQL"
-      ],
-      description: "Created a real-time speech to text transcriber for patient-clinician interactions with AI powered NLP capabilities.",
+      techStack: ["Spring", "Swing", "OpenAI", "PostgreSQL"],
+      description:
+        "Created a real-time speech to text transcriber for patient-clinician interactions with AI powered NLP capabilities.",
       link: {
         label: "GitHub",
         href: "https://github.com/aakashshankar/speech-to-text",
@@ -99,11 +95,12 @@ export const RESUME_DATA = {
     {
       title: "Audio Classifier",
       techStack: ["PyTorch", "Librosa", "Deep Learning"],
-      description: "A simple audio classifier that recognizes and classifies various categories of urban sounds",
+      description:
+        "A simple audio classifier that recognizes and classifies various categories of urban sounds",
       link: {
         label: "Jovian",
-        href: "https://jovian.com/aakashshankar/urbansound8kclassification"
-      }
-    }
+        href: "https://jovian.com/aakashshankar/urbansound8kclassification",
+      },
+    },
   ],
 } as const;
