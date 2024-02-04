@@ -8,7 +8,7 @@ export const RESUME_DATA = {
   about:
     "Software Engineer with 2.5 years of experience in building resilient backend systems.",
   summary:
-    "As an emerging software engineer, I specialize in developing robust backend systems using Java and Go. My expertise extends to implementing auto-scalable, multi-site, and multi-tenant systems through my work with prominent commercial cloud platforms like AWS, Azure, and Google Cloud. Additionally, I possess strong skills in technical product management, effective cross-functional collaboration",
+    "As an emerging software engineer, I specialize in developing robust backend systems using Java and Go. My expertise extends to implementing auto-scalable, multi-site, and multi-tenant systems through my work with prominent commercial cloud platforms like AWS, Azure, and Google Cloud. Additionally, I possess strong skills in technical product management and effective cross-functional collaboration.",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://aakashshankar.me",
   contact: {
