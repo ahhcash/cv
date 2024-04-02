@@ -102,5 +102,15 @@ export const RESUME_DATA = {
         href: "https://jovian.com/aakashshankar/urbansound8kclassification",
       },
     },
-  ],
+    {
+        title: "SHEMS",
+        techStack: ["NextJS", "TypeScript", "Tailwind CSS", "Vercel", "Java", "Spring Boot", "PostgreSQL", "Heroku", "Supabase"],
+        description:
+            "Created a complete fullstack app using NextJS and Spring Boot to manage and monitor the energy consumption of a household, to exercise my skills in frontend and backend development.",
+        link: {
+            label: "GitHub",
+            href: "https://github.com/aakashshankar/shems"
+        },
+    }
+  ]
 } as const;
