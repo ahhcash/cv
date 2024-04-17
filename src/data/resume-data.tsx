@@ -84,8 +84,8 @@ export const RESUME_DATA = {
     "Docker",
     "Kubernetes",
     "AWS",
-    "Jenkins",
     "GitHub Actions",
+    "Vercel",
   ],
   projects: [
     {
