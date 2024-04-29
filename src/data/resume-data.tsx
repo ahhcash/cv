@@ -10,7 +10,7 @@ export const RESUME_DATA = {
   summary:
     "As an emerging software engineer, I specialize in developing robust fullstack systems using Java, Go, NextJS and SvelteKit. My expertise extends to implementing auto-scalable, multi-site, and multi-tenant systems through my work with prominent commercial cloud platforms like AWS, Azure, and Google Cloud. Additionally, I possess strong skills in technical product management and effective cross-functional collaboration.",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
-  personalWebsiteUrl: "https://aakashshankar.me",
+  personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
     email: "aakashshankar217@gmail.com",
     tel: "+15513759829",
