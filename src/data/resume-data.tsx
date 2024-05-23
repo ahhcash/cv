@@ -126,6 +126,15 @@ export const RESUME_DATA = {
           label: "GitHub",
           href: "https://github.com/aakashshankar/ivyhacks_tap_and_go"
       }
-    }
+    },
+    {
+      title: "LLM CLI",
+      techStack: ["Go", "Antrhopic",  "OpenAI"],
+      description: "A command line interface to interact with multiple language models. Context-aware with loads of new features in the works.",
+      link: {
+          label: "GitHub",
+          href: "https://github.com/aakashshankar/claude-cli"
+      }
+    },
   ]
 } as const;
