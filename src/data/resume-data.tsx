@@ -48,6 +48,16 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: "Spotonix",
+      link: "https://spotonix.com",
+      badges: [],
+      title: "Software Engineer Intern",
+      start: "2024",
+      end: "Present",
+      description:
+        "Enabled hybrid full text and vector search capabilities on the Spotonix knowledge graph by integrating LanceDB. Tech: Python, Pydantic, OpenAI",
+    },
+    {
       company: "Cloudera",
       link: "https://cloudera.com",
       badges: [],
@@ -55,7 +65,7 @@ export const RESUME_DATA = {
       start: "2021",
       end: "2023",
       description:
-        "Implemented new features, mentored interns and junior developers and handled customer impacting issues. Tech: Spring, Angular, Apache YARN, AWS",
+        "Engineered cutting edge features for the Cloudera Data Platform. Tech: Spring, Angular, Apache YARN, AWS",
     },
     {
       company: "VeCrear",
@@ -128,12 +138,12 @@ export const RESUME_DATA = {
       }
     },
     {
-      title: "LLM CLI",
-      techStack: ["Go", "Antrhopic",  "OpenAI"],
-      description: "A command line interface to interact with multiple language models. Context-aware with loads of new features in the works.",
+      title: "Terminator",
+      techStack: ["Go", "Anthropic", "OpenAI", "Mistral", "Gemini"],
+      description: "An AI assisted terminal that uses LLMs to provide contextual and personalized assisitance to streamline complex workflows and boost productivity.",
       link: {
           label: "GitHub",
-          href: "https://github.com/aakashshankar/claude-cli"
+          href: "https://github.com/aakashshankar/llm-cli"
       }
     },
   ]
