@@ -60,7 +60,7 @@ export const CommandMenu = ({ links }: Props) => {
               onSelect={() => {
                 setOpen(false);
                 window.location.href =
-                  "https://drive.google.com/file/d/1WoXJw9UqLPwfavmo70HpS0ThbVSTNWe2/view?usp=drive_link";
+                  "https://drive.google.com/file/d/1TPIMfScRG3oUDAElL-8an3xhpxc3WHJa/view?usp=sharing";
               }}
             >
               <span>Print</span>

@@ -3,12 +3,12 @@ import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 export const RESUME_DATA = {
   name: "Aakash Shankar",
   initials: "AS",
-  location: "Union City, NJ",
-  locationLink: "https://maps.app.goo.gl/QbtbEeK15meDdjqT9",
+  location: "New York, NY",
+  locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
   about:
-    "Software Engineer with 2.5 years of experience in building resilient fullstack systems.",
+    "Software Engineer with 3 yoe, on the road to getting cracked.",
   summary:
-    "As an emerging software engineer, I specialize in developing robust fullstack systems using Java, Go, NextJS and SvelteKit. My expertise extends to implementing auto-scalable, multi-site, and multi-tenant systems through my work with prominent commercial cloud platforms like AWS, Azure, and Google Cloud. Additionally, I possess strong skills in technical product management and effective cross-functional collaboration.",
+    "As an emerging software engineer, I specialize in developing robust fullstack systems using Java, Python, Go, and NextJS. My expertise extends to implementing auto-scalable, multi-site, and multi-tenant systems through my work with prominent commercial cloud platforms like AWS, Azure, and Google Cloud. Additionally, I possess strong skills in technical product management and effective cross-functional collaboration.",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
@@ -55,7 +55,7 @@ export const RESUME_DATA = {
       start: "2024",
       end: "Present",
       description:
-        "Enabled hybrid full text and vector search capabilities on the Spotonix knowledge graph by integrating LanceDB. Tech: Python, Pydantic, OpenAI",
+        "Enabled hybrid full text and vector search capabilities on the Spotonix knowledge graph by integrating LanceDB. Tech: Python, Pydantic, OpenAI, RAG, LanceDB",
     },
     {
       company: "Cloudera",
@@ -65,7 +65,7 @@ export const RESUME_DATA = {
       start: "2021",
       end: "2023",
       description:
-        "Engineered cutting edge features for the Cloudera Data Platform. Tech: Spring, Angular, Apache YARN, AWS",
+        "Engineered cutting edge features for the Cloudera Data Platform. Tech: Spring, Docker, Kubernetes, Apache YARN, AWS",
     },
     {
       company: "VeCrear",
@@ -80,6 +80,7 @@ export const RESUME_DATA = {
   ],
   skills: [
     "Java",
+    "Python",
     "Go",
     "TypeScript",
     "Angular",
@@ -91,8 +92,10 @@ export const RESUME_DATA = {
     "JUnit",
     "Mockito",
     "PostgreSQL",
+    "MongoDB",
+    "LanceDB",
     "Docker",
-    "Kubernetes",
+    "Kubernetes (EKS, Openshift)",
     "AWS",
     "GitHub Actions",
     "Vercel",
