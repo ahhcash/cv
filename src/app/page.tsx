@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/command-menu";
+import { TerminalModal } from "@/components/terminal-modal";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
@@ -197,6 +198,8 @@ export default function Page() {
           })),
         ]}
       />
+
+      <TerminalModal />
     </main>
   );
 }

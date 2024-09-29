@@ -48,12 +48,21 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: "New York University",
+      link: "https://nyu.edu",
+      badges: [],
+      title: "Graduate Teaching Assistant",
+      start: "2024",
+      end: "Present",
+      description: "TA for CSGY 9163 - Application Security. Tech: C, Python, Django, Kotlin, Kubernetes"
+    },
+    {
       company: "Spotonix",
       link: "https://spotonix.com",
       badges: [],
       title: "Software Engineer Intern",
       start: "2024",
-      end: "Present",
+      end: "2024",
       description:
         "Enabled hybrid full text and vector search capabilities on the Spotonix knowledge graph by integrating LanceDB. Tech: Python, Pydantic, OpenAI, RAG, LanceDB",
     },
