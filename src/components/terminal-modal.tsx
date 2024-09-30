@@ -43,18 +43,18 @@ export const TerminalModal = () => {
     e.preventDefault()
     if (input.trim() === '') return
 
-    const response = await simulateLLMResponse(input, history)
-
     setHistory(prev => [
       ...prev,
-      { command: input, response }
-    ])
+      {command: input, response: '...'}
+    ]);
+
+    await simulateLLMResponse(input, history) 
 
     setInput('')
   }
 
   // Simulate LLM response (replace with actual API call in a real application)
-  const simulateLLMResponse = async (command: string, history: Array<{ command: string; response: string }>): Promise<string> => {
+  const simulateLLMResponse = async (command: string, history: Array<{ command: string; response: string }>) => {
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -64,15 +64,59 @@ export const TerminalModal = () => {
         body: JSON.stringify({ command, history }),
       });
   
-      if (!response.ok) {
+      if (!response.ok || !response.body) {
         throw new Error('Network response was not ok');
       }
   
-      const data = await response.json();
-      return data.response;
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let done = false;
+      let responseText = '';
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n').filter(line => line.startsWith('data: '));
+          for (const line of lines) {
+            const data = line.replace(/^data: /, '').trim();
+            if (data === '[DONE]') return;
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.type === 'message') {
+                let messageContent = '';
+                if (parsed.message && parsed.message.content && parsed.message.content[0] && parsed.message.content[0].text) {
+                  messageContent = parsed.message.content[0].text;
+                }
+                responseText += messageContent;
+                // Update the last history entry in real-time
+                setHistory(prev => {
+                  const newHistory = [...prev];
+                  const lastIndex = newHistory.length - 1;
+                  newHistory[lastIndex].response = responseText;
+                  return newHistory;
+                });
+              } else if (parsed.type === 'finalMessage') {
+                // Do nothing for finalMessage, as we've already processed the content
+              }
+            } catch (err) {
+              console.error('Error parsing stream data:', err);
+            }
+          }
+        }
+      }
+
+      return responseText;
     } catch (error) {
-      console.error('Error calling API:', error);
-      return 'Sorry, I encountered an error while processing your request.';
+      console.error('Error streaming LLM response:', error);
+      // Update the last history entry with an error message
+      setHistory(prev => {
+        const newHistory = [...prev];
+        const lastIndex = newHistory.length - 1;
+        newHistory[lastIndex].response = 'Sorry, I encountered an error while processing your request.';
+        return newHistory;
+      });
     }
   }
 
