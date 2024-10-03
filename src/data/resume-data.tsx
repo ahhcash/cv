@@ -158,5 +158,14 @@ export const RESUME_DATA = {
           href: "https://github.com/aakashshankar/llm-cli"
       }
     },
+    {
+      title: "VexDB (WIP)",
+      techStack: ["Go", "Embedding models", "Vector Search", "Database fundamentals"],
+      description: "My very own lightweight, key value vector database",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/aakashshankar/vexdb"
+      }
+    }
   ]
 } as const;
