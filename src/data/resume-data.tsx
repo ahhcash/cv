@@ -1,14 +1,14 @@
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
-  name: "Aakash Shankar",
+  name: "aakash / ahhcash",
   initials: "AS",
-  location: "New York, NY",
+  location: "new york, NY",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
   about:
-    "Software Engineer with 3 yoe, on the road to getting cracked.",
+    "swe, low level programming, web, databases. also, gym and anime",
   summary:
-    "As an emerging software engineer, I specialize in developing robust fullstack systems using Java, Python, Go, and NextJS. My expertise extends to implementing auto-scalable, multi-site, and multi-tenant systems through my work with prominent commercial cloud platforms like AWS, Azure, and Google Cloud. Additionally, I possess strong skills in technical product management and effective cross-functional collaboration.",
+    "i'm a newbie dev currently exploring database internals. i'm proficient in most fullstack frameworks but i can easily adapt to anything new. looking for SWE roles starting 2025",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
@@ -57,14 +57,14 @@ export const RESUME_DATA = {
       description: "TA for CSGY 9163 - Application Security. Tech: C, Python, Django, Kotlin, Kubernetes"
     },
     {
-      company: "Spotonix",
+      company: "[stealth startup]",
       link: "https://spotonix.com",
       badges: [],
       title: "Software Engineer Intern",
       start: "2024",
       end: "2024",
       description:
-        "Enabled hybrid full text and vector search capabilities on the Spotonix knowledge graph by integrating LanceDB. Tech: Python, Pydantic, OpenAI, RAG, LanceDB",
+        "Enabled hybrid full text and vector search capabilities on [stealth startup]'s knowledge graph by integrating LanceDB. Tech: Python, Pydantic, OpenAI, RAG, LanceDB",
     },
     {
       company: "Cloudera",
