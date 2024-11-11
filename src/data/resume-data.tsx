@@ -6,9 +6,9 @@ export const RESUME_DATA = {
   location: "new york, NY",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
   about:
-    "cs @ nyu, swe, low level programming, web, databases. also, gym and anime",
+    "cs @ nyu, swe, system programming, web, ai, databases. also, gym and anime",
   summary:
-    "i'm a newbie dev currently exploring database internals. i'm proficient in most fullstack frameworks but i can easily adapt to anything new. looking for SWE roles starting 2025",
+    "i'm an aspiring 10x dev currently exploring database internals. i'm proficient in most fullstack frameworks but i can easily adapt to anything new. looking for SWE roles starting 2025",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
