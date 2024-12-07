@@ -12,7 +12,7 @@ export const RESUME_DATA = {
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
-    email: "aakashshankar217@gmail.com",
+    email: "dev@ahhcash.xyz",
     tel: "+15513759829",
     social: [
       { 
