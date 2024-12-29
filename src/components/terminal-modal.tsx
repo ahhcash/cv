@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Terminal as TerminalIcon, ExternalLink } from "lucide-react";
 
 const convertLinksToElements = (text: string) => {
-  // Updated regex to avoid capturing trailing punctuation
+  // Enhanced regex to match more URL patterns
   const urlRegex =
-    /(https?:\/\/[^\s,)]+|www\.[^\s,)]+|github\.com\/[^\s,)]+|linkedin\.com\/[^\s,)]+|x\.com\/[^\s,)]+|twitter\.com\/[^\s,)]+)([,)\s])?/g;
+    /(?:(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)(?:\/[^\s,)]*)?|(?:[a-zA-Z0-9-]+\.)+(?:com|org|net|edu|gov|mil|biz|info|io|ai|dev|xyz|me|tv)(?:\/[^\s,)]*)?)([,)\s])?/g;
+
   let lastIndex = 0;
   const elements: (string | JSX.Element)[] = [];
   let match;
@@ -20,14 +21,18 @@ const convertLinksToElements = (text: string) => {
     }
 
     // Extract the URL without trailing punctuation
-    const url = match[1]; // The URL is now in capture group 1
-    const punctuation = match[2] || ""; // Any trailing punctuation is in group 2
+    const url = match[1]
+      ? text.slice(
+          match.index,
+          match.index + match[0].length - (match[2] || "").length,
+        )
+      : match[0];
+    const punctuation = match[2] || "";
 
+    // Ensure the URL has a protocol
     const fullUrl = url.startsWith("http")
       ? url
-      : url.startsWith("www.")
-        ? `https://${url}`
-        : `https://${url}`;
+      : `https://${url.startsWith("www.") ? url.slice(4) : url}`;
 
     elements.push(
       <a
