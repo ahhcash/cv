@@ -8,14 +8,14 @@ export const RESUME_DATA = {
   about:
     "cs @ nyu, swe, system programming, web, ai, databases. also, gym and anime",
   summary:
-    "i'm an aspiring 10x dev currently exploring database internals. i'm proficient in most fullstack + ai/ml frameworks but i can easily adapt to anything new. i'm a true believer of \"you can learn anything in two weeks\". looking for SWE roles starting 2025",
+    "i'm an aspiring 10x dev currently exploring database internals. i'm proficient in most fullstack + ai/ml frameworks but i can easily adapt to anything new. i'm a true believer of \"you can learn anything in two weeks\". open for SWE roles starting may 2025",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
     email: "dev@ahhcash.xyz",
     tel: "+15513759829",
     social: [
-      { 
+      {
         name: "GitHub",
         url: "https://github.com/ahhcash",
         icon: GitHubIcon,
@@ -54,7 +54,8 @@ export const RESUME_DATA = {
       title: "graduate course assistant",
       start: "2024",
       end: "present",
-      description: "CA for CSGY 9163 - application security. tech: c, python, django, kotlin, kubernetes"
+      description:
+        "CA for CSGY 9163 - application security. tech: c, python, django, kotlin, kubernetes",
     },
     {
       company: "[stealth startup]",
@@ -111,41 +112,111 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
-      title: "medical healthscibe",
+      title: "medical healthscribe",
       techStack: ["java", "spring", "swing", "openAI", "postgreSQL"],
       description:
         "created a real-time speech to text transcriber for patient-clinician interactions with AI powered NLP capabilities.",
       link: {
         label: "GitHub",
-        href: "https://github.com/aakashshankar/speech-to-text",
+        href: "https://github.com/ahhcash/speech-to-text",
       },
     },
     {
       title: "tap&go",
-      techStack: ["nextJS", "typescript", "tailwind css", "clerk auth", "postgreSQL", "supabase", "mongoDB atlas", "RAG", "openAI"],
-      description: "an ai-powered app integrated with RAG to provide super personalized travel recommendations. created this as part of the ivyhacks and mongoDB hackathons.",
-      link: {
-          label: "GitHub",
-          href: "https://github.com/aakashshankar/ivyhacks_tap_and_go"
-      }
-    },
-    {
-      title: "terminator",
-      techStack: ["go", "anthropic", "openAI", "mistral", "gemini"],
-      description: "an ai assisted terminal that uses LLMs to translates natural language into shell commands, boosting my productivity.",
-      link: {
-          label: "GitHub",
-          href: "https://github.com/aakashshankar/llm-cli"
-      }
-    },
-    {
-      title: "vexDB (wip)",
-      techStack: ["go", "embedding models", "vector search", "database fundamentals"],
-      description: "my very own lightweight, key value vector database",
+      techStack: [
+        "nextJS",
+        "typescript",
+        "tailwind css",
+        "clerk auth",
+        "postgreSQL",
+        "supabase",
+        "mongoDB atlas",
+        "RAG",
+        "openAI",
+      ],
+      description:
+        "an ai-powered app integrated with RAG to provide super personalized travel recommendations. created this as part of the ivyhacks and mongoDB hackathons.",
       link: {
         label: "GitHub",
-        href: "https://github.com/aakashshankar/vexdb"
-      }
-    }
-  ]
+        href: "https://github.com/ahhcash/ivyhacks_tap_and_go",
+      },
+    },
+    {
+      title: "llm-cli",
+      techStack: ["go", "anthropic", "openAI", "mistral", "gemini"],
+      description:
+        "an ai assisted terminal that uses LLMs to translates natural language into shell commands, boosting my productivity.",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/ahhcash/llm-cli",
+      },
+    },
+    {
+      title: "GhastlyDB (WIP)",
+      techStack: [
+        "go",
+        "embedding models",
+        "vector search",
+        "database fundamentals",
+        "LSM trees",
+        "similarity search",
+      ],
+      description:
+        "a lightweight key-value vector database built from the ground up in Go, with LSM tree storage and multi-provider embedding support for efficient similarity search.",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/ahhcash/ghastly",
+      },
+    },
+    {
+      title: "NYC Public Service Finder",
+      techStack: [
+        "python",
+        "django",
+        "nyc open data",
+        "aws elastic beanstalk",
+        "aws dynamodb",
+        "aws s3",
+        "travis ci",
+      ],
+      description:
+        "a full-stack django app that allows people in NYC to easily search and locate public services, leave reviews, and discuss on the platform.",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/gcivil-nyu-org/wed-fall24-team1",
+      },
+    },
+    {
+      title: "Grotle (WIP)",
+      techStack: [
+        "Go",
+        "HTMX",
+        "Mixpeek",
+        "Multimodal semantic search",
+        "vector embeddings",
+      ],
+      description:
+        "a multimodal search pipeline using mixpeek that lets you semantically search for [REDACTED]",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/ahhcash/grotle",
+      },
+    },
+    {
+      title: "Gengar (WIP)",
+      techStack: [
+        "Go",
+        "Post Quantum Encryption",
+        "liboqs",
+        "CRYSTALS KYBER",
+        "gRPC",
+      ],
+      description:
+        "a PoC for post quantum encryption on a simulated cloud storage environment. uses Kyber768 + AES-GCM encryption to securely upload and download documents from a cloud server",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/ahhcash/gengar",
+      },
+    },
+  ],
 } as const;
