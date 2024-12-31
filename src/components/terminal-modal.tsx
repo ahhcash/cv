@@ -76,7 +76,7 @@ export const TerminalModal = () => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key === ";") {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "j") {
         event.preventDefault();
         setIsOpen((prev) => !prev);
       }

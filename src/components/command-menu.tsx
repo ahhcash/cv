@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-
 import {
   CommandDialog,
   CommandEmpty,
@@ -12,8 +11,6 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { Button } from "./ui/button";
-import { CommandIcon } from "lucide-react";
-import { redirect } from "next/dist/server/api-utils";
 
 interface Props {
   links: { url: string; title: string }[];
@@ -24,7 +21,7 @@ export const CommandMenu = ({ links }: Props) => {
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
       }
@@ -36,40 +33,62 @@ export const CommandMenu = ({ links }: Props) => {
 
   return (
     <>
-      <p className="border-t-muted text-muted-foreground fixed bottom-0 left-0 right-0 hidden border-t bg-white p-1 text-center text-sm print:hidden xl:block">
-        <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100">
-          <span className="text-xs">⌘</span>J
-        </kbd>{" "}
-        - command menu
-        {" | "}<kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100">
-          <span className="text-xs">⌘</span>;
-        </kbd>{" "}
-        - talk to me
-      </p>
-      <Button
-        onClick={() => setOpen((open) => !open)}
-        variant="outline"
-        size="icon"
-        className="fixed bottom-4 right-4 flex rounded-full shadow-2xl print:hidden xl:hidden"
-      >
-        <CommandIcon className="size-6 my-6" />
-      </Button>
+      {/* Moved to top and added terminal shortcut */}
+      <div className="fixed left-1/2 top-6 z-50 -translate-x-1/2 transform print:hidden">
+        <div className="border-mocha-overlay bg-mocha-base/80 flex items-center gap-4 rounded-lg border px-3 py-1.5 backdrop-blur-sm">
+          {/* Search Command */}
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={() => setOpen((open) => !open)}
+              variant="ghost"
+              className="text-mocha-subtext hover:text-mocha-blue h-auto p-0 font-mono text-sm transition-colors"
+            >
+              search
+            </Button>
+            <div className="bg-mocha-overlay h-4 w-px" />
+            <kbd className="text-mocha-subtext hidden font-mono text-xs sm:inline-flex">
+              <span className="px-1">⌘</span>K
+            </kbd>
+          </div>
+
+          {/* Separator between shortcuts */}
+          <div className="bg-mocha-overlay h-4 w-px" />
+
+          {/* Terminal Command */}
+          <div className="flex items-center gap-2">
+            <span className="text-mocha-subtext font-mono text-sm">
+              terminal
+            </span>
+            <div className="bg-mocha-overlay h-4 w-px" />
+            <kbd className="text-mocha-subtext hidden font-mono text-xs sm:inline-flex">
+              <span className="px-1">⌘</span>J
+            </kbd>
+          </div>
+        </div>
+      </div>
+
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Actions">
+        <CommandInput
+          placeholder="Type a command or search..."
+          className="border-b-mocha-overlay bg-mocha-base text-mocha-text placeholder:text-mocha-subtext"
+        />
+        <CommandList className="bg-mocha-base">
+          <CommandEmpty className="text-mocha-subtext px-2 py-2 text-base">
+            no results found.
+          </CommandEmpty>
+          <CommandGroup heading="Actions" className="text-mocha-lavender">
             <CommandItem
               onSelect={() => {
                 setOpen(false);
                 window.location.href =
                   "https://drive.google.com/file/d/1TPIMfScRG3oUDAElL-8an3xhpxc3WHJa/view?usp=sharing";
               }}
+              className="text-mocha-text hover:bg-mocha-surface hover:text-mocha-blue"
             >
               <span>Print</span>
             </CommandItem>
           </CommandGroup>
-          <CommandGroup heading="Links">
+          <CommandGroup heading="Links" className="text-mocha-lavender">
             {links.map(({ url, title }) => (
               <CommandItem
                 key={url}
@@ -77,12 +96,13 @@ export const CommandMenu = ({ links }: Props) => {
                   setOpen(false);
                   window.open(url, "_blank");
                 }}
+                className="text-mocha-text hover:bg-mocha-surface hover:text-mocha-blue"
               >
                 <span>{title}</span>
               </CommandItem>
             ))}
           </CommandGroup>
-          <CommandSeparator />
+          <CommandSeparator className="bg-mocha-overlay" />
         </CommandList>
       </CommandDialog>
     </>

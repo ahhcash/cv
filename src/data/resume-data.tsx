@@ -36,14 +36,14 @@ export const RESUME_DATA = {
     {
       school: "new york university",
       degree: "master's degree, computer science",
-      start: "2023",
-      end: "2025",
+      start: "aug 2023",
+      end: "may 2025",
     },
     {
       school: "visvesvaraya technological university",
       degree: "bachelor's degree, computer science",
-      start: "2017",
-      end: "2021",
+      start: "aug 2017",
+      end: "jul 2021",
     },
   ],
   work: [
@@ -52,7 +52,7 @@ export const RESUME_DATA = {
       link: "https://nyu.edu",
       badges: [],
       title: "graduate course assistant",
-      start: "2024",
+      start: "sep 2024",
       end: "present",
       description:
         "CA for CSGY 9163 - application security. tech: c, python, django, kotlin, kubernetes",
@@ -60,10 +60,10 @@ export const RESUME_DATA = {
     {
       company: "[stealth startup]",
       link: "https://spotonix.com",
-      badges: ["Remote"],
+      badges: ["remote"],
       title: "software engineer intern",
-      start: "2024",
-      end: "2024",
+      start: "jun 2024",
+      end: "aug 2024",
       description:
         "enabled hybrid full text and vector search capabilities on [stealth startup]'s knowledge graph by integrating lanceDB. tech: python, pydantic, openAI, RAG, lanceDB",
     },
@@ -72,8 +72,8 @@ export const RESUME_DATA = {
       link: "https://cloudera.com",
       badges: [],
       title: "software engineer intern → software engineer II",
-      start: "2021",
-      end: "2023",
+      start: "jan 2021",
+      end: "jul 2023",
       description:
         "engineered cutting edge features for the cloudera data platform. tech: java, spring, docker, kubernetes, apache YARN, aws",
     },
@@ -82,8 +82,8 @@ export const RESUME_DATA = {
       link: "https://vecrear.com/",
       title: "software engineer intern",
       badges: [],
-      start: "2019",
-      end: "2020",
+      start: "dec 2019",
+      end: "mar 2020",
       description:
         "developed automated data pipelines to generate performance analysis reports. tech: python, pandas, apache airflow",
     },
@@ -119,26 +119,6 @@ export const RESUME_DATA = {
       link: {
         label: "GitHub",
         href: "https://github.com/ahhcash/speech-to-text",
-      },
-    },
-    {
-      title: "tap&go",
-      techStack: [
-        "nextJS",
-        "typescript",
-        "tailwind css",
-        "clerk auth",
-        "postgreSQL",
-        "supabase",
-        "mongoDB atlas",
-        "RAG",
-        "openAI",
-      ],
-      description:
-        "an ai-powered app integrated with RAG to provide super personalized travel recommendations. created this as part of the ivyhacks and mongoDB hackathons.",
-      link: {
-        label: "GitHub",
-        href: "https://github.com/ahhcash/ivyhacks_tap_and_go",
       },
     },
     {

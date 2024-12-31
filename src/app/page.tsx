@@ -10,24 +10,21 @@ import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
 
-export const metadata: Metadata = {
-  title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
-  description: RESUME_DATA.summary,
-};
-
 export default function Page() {
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
+    <main className="bg-mocha-base container relative mx-auto min-h-screen scroll-my-12 overflow-auto p-4 md:p-16 print:p-12">
+      <section className="bg-mocha-base mx-auto w-full max-w-2xl space-y-8 print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
-            <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
-            <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
+            <h1 className="from-mocha-mauve to-mocha-blue font-hack bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent">
+              {RESUME_DATA.name}
+            </h1>
+            <p className="text-mocha-text text-pretty font-mono text-sm">
               {RESUME_DATA.about}
             </p>
-            <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
+            <p className="text-mocha-subtext max-w-md items-center text-pretty font-mono text-xs">
               <a
-                className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
+                className="hover:text-mocha-blue inline-flex gap-x-1.5 align-baseline leading-none transition-colors"
                 href={RESUME_DATA.locationLink}
                 target="_blank"
               >
@@ -35,10 +32,10 @@ export default function Page() {
                 {RESUME_DATA.location}
               </a>
             </p>
-            <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
+            <div className="text-mocha-subtext flex gap-x-1 pt-1 font-mono text-sm print:hidden">
               {RESUME_DATA.contact.email ? (
                 <Button
-                  className="size-8"
+                  className="hover:bg-mocha-surface hover:text-mocha-blue size-8 transition-colors"
                   variant="outline"
                   size="icon"
                   asChild
@@ -50,7 +47,7 @@ export default function Page() {
               ) : null}
               {RESUME_DATA.contact.tel ? (
                 <Button
-                  className="size-8"
+                  className="hover:bg-mocha-surface hover:text-mocha-blue size-8 transition-colors"
                   variant="outline"
                   size="icon"
                   asChild
@@ -63,7 +60,7 @@ export default function Page() {
               {RESUME_DATA.contact.social.map((social) => (
                 <Button
                   key={social.name}
-                  className="size-8"
+                  className="hover:bg-mocha-surface hover:text-mocha-blue size-8 transition-colors"
                   variant="outline"
                   size="icon"
                   asChild
@@ -74,7 +71,7 @@ export default function Page() {
                 </Button>
               ))}
             </div>
-            <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
+            <div className="text-mocha-subtext hidden flex-col gap-x-1 font-mono text-sm print:flex">
               {RESUME_DATA.contact.email ? (
                 <a href={`mailto:${RESUME_DATA.contact.email}`}>
                   <span className="underline">{RESUME_DATA.contact.email}</span>
@@ -88,89 +85,79 @@ export default function Page() {
             </div>
           </div>
 
-          <Avatar className="size-28">
+          <Avatar className="ring-mocha-mauve size-28 ring-2">
             <AvatarImage alt={RESUME_DATA.name} src={RESUME_DATA.avatarUrl} />
             <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
           </Avatar>
         </div>
-        <Section>
-          <h2 className="text-xl font-bold">about</h2>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
+        <Section title="about">
+          <p className="text-mocha-text text-pretty font-mono text-sm">
             {RESUME_DATA.summary}
           </p>
         </Section>
-        <Section>
-          <h2 className="text-xl font-bold">work</h2>
+        <Section title="work">
           {RESUME_DATA.work.map((work) => {
             return (
-              <Card key={work.company}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={work.link}>
-                        {work.company}
-                      </a>
-
-                      <span className="inline-flex gap-x-1">
-                        {work.badges.map((badge) => (
+              <div key={work.company} className="mb-3 last:mb-0">
+                <div className="bg-mocha-surface/50 hover:bg-mocha-surface group relative flex flex-col gap-2 rounded-lg p-4 transition-all">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-mocha-text text-base font-medium leading-none">
+                          {work.company}
+                        </h3>
+                        {work.badges?.map((badge) => (
                           <Badge
-                            variant="secondary"
-                            className="align-middle text-xs"
                             key={badge}
+                            className="bg-mocha-mauve/20 text-mocha-mauve border-none text-xs"
                           >
                             {badge}
                           </Badge>
                         ))}
-                      </span>
-                    </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+                      </div>
+                      <div className="text-mocha-pink mt-1.5 text-sm font-medium">
+                        {work.title}
+                      </div>
+                    </div>
+                    <div className="text-mocha-subtext text-sm tabular-nums">
                       {work.start} - {work.end}
                     </div>
                   </div>
 
-                  <h4 className="font-mono text-sm leading-none">
-                    {work.title}
-                  </h4>
-                </CardHeader>
-                <CardContent className="mt-2 text-xs">
-                  {work.description}
-                </CardContent>
-              </Card>
+                  <div className="text-mocha-subtext text-xs">
+                    {work.description}
+                  </div>
+                </div>
+              </div>
             );
           })}
         </Section>
-        <Section>
-          <h2 className="text-xl font-bold">education</h2>
+
+        <Section title="education">
           {RESUME_DATA.education.map((education) => {
             return (
-              <Card key={education.school}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="font-semibold leading-none">
-                      {education.school}
-                    </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+              <div key={education.school} className="mb-3 last:mb-0">
+                <div className="bg-mocha-surface/50 hover:bg-mocha-surface group relative flex flex-col gap-2 rounded-lg p-4 transition-all">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <h3 className="text-mocha-text text-base font-medium leading-none">
+                        {education.school}
+                      </h3>
+                      <div className="text-mocha-subtext mt-1.5 text-sm">
+                        {education.degree}
+                      </div>
+                    </div>
+                    <div className="text-mocha-subtext text-sm tabular-nums">
                       {education.start} - {education.end}
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="mt-2">{education.degree}</CardContent>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </Section>
-        <Section>
-          <h2 className="text-xl font-bold">skills</h2>
-          <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.skills.map((skill) => {
-              return <Badge key={skill}>{skill}</Badge>;
-            })}
-          </div>
-        </Section>
-
-        <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">projects</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
+        <Section title="projects" className="print-force-new-page scroll-mb-16">
+          <div className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
             {RESUME_DATA.projects.map((project) => {
               return (
                 <ProjectCard
@@ -183,9 +170,19 @@ export default function Page() {
               );
             })}
           </div>
+          <div className="mt-4 flex justify-center">
+            <a
+              href="https://github.com/ahhcash?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-mocha-subtext hover:text-mocha-blue inline-flex items-center gap-1 font-mono text-sm transition-colors"
+            >
+              all projects
+              <span className="relative top-[1px]">→</span>
+            </a>
+          </div>
         </Section>
       </section>
-
       <CommandMenu
         links={[
           {
@@ -198,7 +195,6 @@ export default function Page() {
           })),
         ]}
       />
-
       <TerminalModal />
     </main>
   );

@@ -16,27 +16,27 @@ interface Props {
 
 export function ProjectCard({ title, description, tags, link }: Props) {
   return (
-    <Card className="flex flex-col overflow-hidden border border-muted p-3">
+    <Card className="border-mocha-overlay hover:border-mocha-lavender bg-mocha-surface flex flex-col overflow-hidden border p-3 transition-colors">
       <CardHeader className="">
         <div className="space-y-1">
-          <CardTitle className="text-base">
+          <CardTitle className="text-mocha-text text-base">
             {link ? (
               <a
                 href={link}
                 target="_blank"
-                className="inline-flex items-center gap-1 hover:underline"
+                className="hover:text-mocha-blue inline-flex items-center gap-1 transition-colors"
               >
                 {title}{" "}
-                <span className="size-1 rounded-full bg-green-500"></span>
+                <span className="bg-mocha-green size-1 rounded-full"></span>
               </a>
             ) : (
               title
             )}
           </CardTitle>
-          <div className="hidden font-mono text-xs underline print:visible">
+          <div className="text-mocha-subtext hidden font-mono text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <CardDescription className="font-mono text-xs">
+          <CardDescription className="text-mocha-subtext font-mono text-xs">
             {description}
           </CardDescription>
         </div>
@@ -45,8 +45,7 @@ export function ProjectCard({ title, description, tags, link }: Props) {
         <div className="mt-2 flex flex-wrap gap-1">
           {tags.map((tag) => (
             <Badge
-              className="px-1 py-0 text-[10px]"
-              variant="secondary"
+              className="bg-mocha-overlay text-mocha-blue hover:bg-mocha-surface px-1 py-0 text-[10px] transition-colors"
               key={tag}
             >
               {tag}
