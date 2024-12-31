@@ -2,11 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import { Terminal as TerminalIcon, ExternalLink } from "lucide-react";
 
 const convertLinksToElements = (text: string) => {
-  // Enhanced regex to match more URL patterns
   const urlRegex =
     /(?:(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)(?:\/[^\s,)]*)?|(?:[a-zA-Z0-9-]+\.)+(?:com|org|net|edu|gov|mil|biz|info|io|ai|dev|xyz|me|tv)(?:\/[^\s,)]*)?)([,)\s])?/g;
 
@@ -15,12 +14,10 @@ const convertLinksToElements = (text: string) => {
   let match;
 
   while ((match = urlRegex.exec(text)) !== null) {
-    // Add the text before the match
     if (match.index > lastIndex) {
       elements.push(text.slice(lastIndex, match.index));
     }
 
-    // Extract the URL without trailing punctuation
     const url = match[1]
       ? text.slice(
           match.index,
@@ -29,7 +26,6 @@ const convertLinksToElements = (text: string) => {
       : match[0];
     const punctuation = match[2] || "";
 
-    // Ensure the URL has a protocol
     const fullUrl = url.startsWith("http")
       ? url
       : `https://${url.startsWith("www.") ? url.slice(4) : url}`;
@@ -40,16 +36,15 @@ const convertLinksToElements = (text: string) => {
         href={fullUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 rounded px-1.5 py-0.5
-        text-blue-400 decoration-blue-300/30 transition-all
-        duration-200 hover:bg-blue-400/10 hover:text-blue-300 hover:underline"
+        className="text-mocha-blue decoration-mocha-blue/30 hover:bg-mocha-blue/10 hover:text-mocha-blue inline-flex items-center
+        gap-1 rounded px-1.5
+        py-0.5 transition-all duration-200 hover:underline"
       >
         {url}
         <ExternalLink className="h-3 w-3" />
       </a>,
     );
 
-    // Add back any trailing punctuation as plain text
     if (punctuation) {
       elements.push(punctuation);
     }
@@ -57,7 +52,6 @@ const convertLinksToElements = (text: string) => {
     lastIndex = match.index + match[0].length;
   }
 
-  // Add any remaining text after the last match
   if (lastIndex < text.length) {
     elements.push(text.slice(lastIndex));
   }
@@ -83,7 +77,6 @@ export const TerminalModal = () => {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -106,13 +99,10 @@ export const TerminalModal = () => {
     if (input.trim() === "") return;
 
     setHistory((prev) => [...prev, { command: input, response: "..." }]);
-
     await simulateLLMResponse(input, history);
-
     setInput("");
   };
 
-  // Simulate LLM response (replace with actual API call in a real application)
   const simulateLLMResponse = async (
     command: string,
     history: Array<{ command: string; response: string }>,
@@ -159,15 +149,12 @@ export const TerminalModal = () => {
                   messageContent = parsed.message.content[0].text;
                 }
                 responseText += messageContent;
-                // Update the last history entry in real-time
                 setHistory((prev) => {
                   const newHistory = [...prev];
                   const lastIndex = newHistory.length - 1;
                   newHistory[lastIndex].response = responseText;
                   return newHistory;
                 });
-              } else if (parsed.type === "finalMessage") {
-                // Do nothing for finalMessage, as we've already processed the content
               }
             } catch (err) {
               console.error("Error parsing stream data:", err);
@@ -179,7 +166,6 @@ export const TerminalModal = () => {
       return responseText;
     } catch (error) {
       console.error("Error streaming LLM response:", error);
-      // Update the last history entry with an error message
       setHistory((prev) => {
         const newHistory = [...prev];
         const lastIndex = newHistory.length - 1;
@@ -196,38 +182,38 @@ export const TerminalModal = () => {
         <Button
           variant="outline"
           size="icon"
-          className="fixed bottom-4 right-4 bg-gray-800 text-gray-200 hover:bg-gray-700"
+          className="bg-mocha-base border-mocha-overlay text-mocha-text hover:bg-mocha-surface hover:text-mocha-pink fixed bottom-4 right-4 transition-colors duration-200"
         >
           <TerminalIcon className="h-4 w-4" />
           <span className="sr-only">Open terminal</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="border-gray-700 bg-gray-900 sm:max-w-[1000px]">
-        <div className="w-full rounded-lg bg-gray-900 p-4 font-mono text-gray-300 shadow-lg">
+      <DialogContent className="border-mocha-overlay bg-mocha-base sm:max-w-[1000px]">
+        <div className="bg-mocha-base text-mocha-text w-full rounded-lg p-4 shadow-lg">
           <div
             ref={terminalRef}
-            className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-800 mb-4 h-96 overflow-y-auto"
+            className="scrollbar-thin scrollbar-thumb-mocha-overlay scrollbar-track-mocha-surface mb-4 h-96 overflow-y-auto"
           >
             {history.map((item, index) => (
-              <div key={index}>
-                <div className="flex">
-                  <span className="mr-2 text-yellow-500">$</span>
-                  <span>{item.command}</span>
+              <div key={index} className="mb-4 last:mb-0">
+                <div className="flex items-center gap-2 font-mono">
+                  <span className="text-mocha-pink">$</span>
+                  <span className="text-mocha-text">{item.command}</span>
                 </div>
-                <div className="mb-2 ml-4 text-gray-400">
+                <div className="text-mocha-subtext font-hack ml-4">
                   {convertLinksToElements(item.response)}
                 </div>
               </div>
             ))}
           </div>
-          <form onSubmit={handleSubmit} className="flex">
-            <span className="mr-2 text-yellow-500">$</span>
+          <form onSubmit={handleSubmit} className="flex items-center gap-2">
+            <span className="text-mocha-pink font-mono">$</span>
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="flex-grow bg-transparent text-gray-300 placeholder-gray-500 outline-none"
+              className="text-mocha-text placeholder-mocha-subtext/50 focus:bg-mocha-surface/30 flex-grow rounded bg-transparent px-2 py-1 font-mono outline-none transition-all duration-200"
               placeholder="what do you want to know?"
               aria-label="Terminal input"
             />

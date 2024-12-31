@@ -18,8 +18,10 @@ interface Props {
 
 export const CommandMenu = ({ links }: Props) => {
   const [open, setOpen] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
+    // Keyboard shortcuts remain active regardless of menu visibility
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -29,40 +31,79 @@ export const CommandMenu = ({ links }: Props) => {
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
+  }, []); // Removed isVisible dependency since shortcuts should always work
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsVisible(scrollPosition > 20);
+    };
+
+    // Initial check when component mounts
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleTerminalClick = () => {
+    // The click handler remains active, but the button itself will be hidden
+    const event = new KeyboardEvent("keydown", {
+      key: "j",
+      metaKey: true,
+      bubbles: true,
+    });
+    document.dispatchEvent(event);
+  };
 
   return (
     <>
-      {/* Moved to top and added terminal shortcut */}
-      <div className="fixed left-1/2 top-6 z-50 -translate-x-1/2 transform print:hidden">
-        <div className="border-mocha-overlay bg-mocha-base/80 flex items-center gap-4 rounded-lg border px-3 py-1.5 backdrop-blur-sm">
+      <div
+        className={`fixed left-1/2 top-6 z-50 -translate-x-1/2 transform transition-all duration-300 print:hidden ${
+          isVisible
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none invisible -translate-y-4 opacity-0"
+        }`}
+        style={{ marginTop: "0.5rem" }}
+        aria-hidden={!isVisible}
+      >
+        <div className="border-mocha-overlay bg-mocha-base/80 flex items-center gap-8 rounded-lg border px-6 py-2 backdrop-blur-sm">
           {/* Search Command */}
-          <div className="flex items-center gap-2">
-            <Button
-              onClick={() => setOpen((open) => !open)}
-              variant="ghost"
-              className="text-mocha-subtext hover:text-mocha-blue h-auto p-0 font-mono text-sm transition-colors"
-            >
-              search
-            </Button>
-            <div className="bg-mocha-overlay h-4 w-px" />
-            <kbd className="text-mocha-subtext hidden font-mono text-xs sm:inline-flex">
-              <span className="px-1">⌘</span>K
-            </kbd>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Button
+                onClick={() => setOpen((open) => !open)}
+                variant="ghost"
+                className="text-mocha-subtext hover:text-mocha-pink hover:bg-mocha-pink/10 h-auto p-0 font-mono text-sm transition-all duration-200"
+              >
+                search
+              </Button>
+              <span className="text-mocha-subtext/50 text-xs">(</span>
+              <kbd className="text-mocha-subtext bg-mocha-overlay/30 rounded px-1.5 py-0.5 font-mono text-xs">
+                ⌘K
+              </kbd>
+              <span className="text-mocha-subtext/50 text-xs">)</span>
+            </div>
           </div>
 
           {/* Separator between shortcuts */}
           <div className="bg-mocha-overlay h-4 w-px" />
 
           {/* Terminal Command */}
-          <div className="flex items-center gap-2">
-            <span className="text-mocha-subtext font-mono text-sm">
-              terminal
-            </span>
-            <div className="bg-mocha-overlay h-4 w-px" />
-            <kbd className="text-mocha-subtext hidden font-mono text-xs sm:inline-flex">
-              <span className="px-1">⌘</span>J
-            </kbd>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Button
+                onClick={handleTerminalClick}
+                variant="ghost"
+                className="text-mocha-subtext hover:text-mocha-pink hover:bg-mocha-pink/10 h-auto p-0 font-mono text-sm transition-all duration-200"
+              >
+                cashbot
+              </Button>
+              <span className="text-mocha-subtext/50 text-xs">(</span>
+              <kbd className="text-mocha-subtext bg-mocha-overlay/30 rounded px-1.5 py-0.5 font-mono text-xs">
+                ⌘J
+              </kbd>
+              <span className="text-mocha-subtext/50 text-xs">)</span>
+            </div>
           </div>
         </div>
       </div>
