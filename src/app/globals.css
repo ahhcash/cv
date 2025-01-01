@@ -75,3 +75,24 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(228 25% 72%);
 }
+
+.glow-effect {
+  box-shadow:
+    0 0 15px 2px rgba(203, 166, 247, 0.15),
+    /* mauve */ 0 0 25px 3px rgba(137, 180, 250, 0.1); /* blue */
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 15px 2px rgba(203, 166, 247, 0.15),
+      0 0 25px 3px rgba(137, 180, 250, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 20px 3px rgba(203, 166, 247, 0.2),
+      0 0 30px 4px rgba(137, 180, 250, 0.15);
+  }
+}

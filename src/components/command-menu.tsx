@@ -66,7 +66,7 @@ export const CommandMenu = ({ links }: Props) => {
         style={{ marginTop: "0.5rem" }}
         aria-hidden={!isVisible}
       >
-        <div className="border-mocha-overlay bg-mocha-base/80 flex items-center gap-8 rounded-lg border px-6 py-2 backdrop-blur-sm">
+        <div className="border-mocha-overlay bg-mocha-base/80 glow-effect flex items-center gap-8 rounded-lg border px-6 py-2 backdrop-blur-sm">
           {/* Search Command */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
