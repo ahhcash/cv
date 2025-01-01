@@ -126,7 +126,7 @@ export const CommandMenu = ({ links }: Props) => {
               }}
               className="text-mocha-text hover:bg-mocha-surface hover:text-mocha-blue"
             >
-              <span>Print</span>
+              <span>print</span>
             </CommandItem>
           </CommandGroup>
           <CommandGroup heading="Links" className="text-mocha-lavender">
