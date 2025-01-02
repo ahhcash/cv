@@ -150,7 +150,8 @@ export const RESUME_DATA = {
         label: "GitHub",
         href: "https://github.com/ahhcash/ghastly",
       },
-      bgImageUrl: "https://w.wallhaven.cc/full/qz/wallhaven-qz7lrd.png",
+      bgImageUrl:
+        "https://wallpapers.com/images/hd/shunsui-kyoraku-1920-x-1080-wallpaper-0dg6jqf2v7digp5k.jpg",
     },
     {
       title: "NYC Public Service Finder",
