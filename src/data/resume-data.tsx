@@ -120,6 +120,8 @@ export const RESUME_DATA = {
         label: "GitHub",
         href: "https://github.com/ahhcash/speech-to-text",
       },
+      bgImageUrl:
+        "https://wallpapers.com/images/hd/roy-mustang-1440-x-2586-wallpaper-a1pzyjufb2gp1zzv.jpg",
     },
     {
       title: "llm-cli",
@@ -130,6 +132,7 @@ export const RESUME_DATA = {
         label: "GitHub",
         href: "https://github.com/ahhcash/llm-cli",
       },
+      bgImageUrl: "https://w.wallhaven.cc/full/vq/wallhaven-vq5vd8.png",
     },
     {
       title: "GhastlyDB (WIP)",
@@ -147,6 +150,7 @@ export const RESUME_DATA = {
         label: "GitHub",
         href: "https://github.com/ahhcash/ghastly",
       },
+      bgImageUrl: "https://w.wallhaven.cc/full/qz/wallhaven-qz7lrd.png",
     },
     {
       title: "NYC Public Service Finder",
@@ -165,6 +169,7 @@ export const RESUME_DATA = {
         label: "GitHub",
         href: "https://github.com/gcivil-nyu-org/wed-fall24-team1",
       },
+      bgImageUrl: "https://wallpapercave.com/wp/wp5423003.jpg",
     },
     {
       title: "Grotle (WIP)",
@@ -179,8 +184,9 @@ export const RESUME_DATA = {
         "a multimodal search pipeline using mixpeek that lets you semantically search for [REDACTED]",
       link: {
         label: "GitHub",
-        href: "https://github.com/ahhcash/grotle",
+        href: "https://grotle-one.vercel.app",
       },
+      bgImageUrl: "https://images6.alphacoders.com/135/1353804.png",
     },
     {
       title: "Gengar (WIP)",
@@ -197,6 +203,7 @@ export const RESUME_DATA = {
         label: "GitHub",
         href: "https://github.com/ahhcash/gengar",
       },
+      bgImageUrl: "https://w.wallhaven.cc/full/13/wallhaven-13ozrw.jpg",
     },
   ],
 } as const;
