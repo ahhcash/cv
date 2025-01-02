@@ -19,6 +19,11 @@ interface Props {
 export const CommandMenu = ({ links }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(false);
+  const [isMac, setIsMac] = React.useState(false);
+  React.useEffect(() => {
+    // Check if user is on macOS
+    setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
+  }, []);
 
   React.useEffect(() => {
     // Keyboard shortcuts remain active regardless of menu visibility
@@ -79,7 +84,7 @@ export const CommandMenu = ({ links }: Props) => {
               </Button>
               <span className="text-mocha-subtext/50 text-xs">(</span>
               <kbd className="text-mocha-subtext bg-mocha-overlay/30 rounded px-1.5 py-0.5 font-mono text-xs">
-                ⌘K
+                {isMac ? "⌘" : "Ctrl"}K
               </kbd>
               <span className="text-mocha-subtext/50 text-xs">)</span>
             </div>
@@ -100,7 +105,7 @@ export const CommandMenu = ({ links }: Props) => {
               </Button>
               <span className="text-mocha-subtext/50 text-xs">(</span>
               <kbd className="text-mocha-subtext bg-mocha-overlay/30 rounded px-1.5 py-0.5 font-mono text-xs">
-                ⌘J
+                {isMac ? "⌘" : "Ctrl"}J
               </kbd>
               <span className="text-mocha-subtext/50 text-xs">)</span>
             </div>
