@@ -6,44 +6,63 @@ import { Button } from "./ui/button";
 import { Terminal as TerminalIcon, ExternalLink } from "lucide-react";
 
 const convertLinksToElements = (text: string) => {
-  const urlRegex =
-    /(?:(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)(?:\/[^\s,)]*)?|(?:[a-zA-Z0-9-]+\.)+(?:com|org|net|edu|gov|mil|biz|info|io|ai|dev|xyz|me|tv)(?:\/[^\s,)]*)?)([,)\s])?/g;
+  // Combined regex for URLs and email addresses
+  const combinedRegex =
+    /(?:(?:(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)(?:\/[^\s,)]*)?|(?:[a-zA-Z0-9-]+\.)+(?:com|org|net|edu|gov|mil|biz|info|io|ai|dev|xyz|me|tv)(?:\/[^\s,)]*)?)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}))([,)\s])?/g;
 
   let lastIndex = 0;
   const elements: (string | JSX.Element)[] = [];
   let match;
 
-  while ((match = urlRegex.exec(text)) !== null) {
+  while ((match = combinedRegex.exec(text)) !== null) {
     if (match.index > lastIndex) {
       elements.push(text.slice(lastIndex, match.index));
     }
 
-    const url = match[1]
-      ? text.slice(
-          match.index,
-          match.index + match[0].length - (match[2] || "").length,
-        )
-      : match[0];
-    const punctuation = match[2] || "";
+    const isEmail = match[2]; // Email match group
+    const content = isEmail
+      ? match[2]
+      : match[1]
+        ? text.slice(
+            match.index,
+            match.index + match[0].length - (match[3] || "").length,
+          )
+        : match[0];
+    const punctuation = match[3] || "";
 
-    const fullUrl = url.startsWith("http")
-      ? url
-      : `https://${url.startsWith("www.") ? url.slice(4) : url}`;
+    if (isEmail) {
+      elements.push(
+        <a
+          key={match.index}
+          href={`mailto:${content}`}
+          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5
+          text-mocha-blue decoration-mocha-blue/30 transition-all
+          duration-200 hover:bg-mocha-blue/10 hover:text-mocha-blue hover:underline"
+        >
+          {content}
+          <ExternalLink className="h-3 w-3" />
+        </a>,
+      );
+    } else {
+      const fullUrl = content.startsWith("http")
+        ? content
+        : `https://${content.startsWith("www.") ? content.slice(4) : content}`;
 
-    elements.push(
-      <a
-        key={match.index}
-        href={fullUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-mocha-blue decoration-mocha-blue/30 hover:bg-mocha-blue/10 hover:text-mocha-blue inline-flex items-center
-        gap-1 rounded px-1.5
-        py-0.5 transition-all duration-200 hover:underline"
-      >
-        {url}
-        <ExternalLink className="h-3 w-3" />
-      </a>,
-    );
+      elements.push(
+        <a
+          key={match.index}
+          href={fullUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5
+          text-mocha-blue decoration-mocha-blue/30 transition-all
+          duration-200 hover:bg-mocha-blue/10 hover:text-mocha-blue hover:underline"
+        >
+          {content}
+          <ExternalLink className="h-3 w-3" />
+        </a>,
+      );
+    }
 
     if (punctuation) {
       elements.push(punctuation);
@@ -182,14 +201,14 @@ export const TerminalModal = () => {
         <Button
           variant="outline"
           size="icon"
-          className="bg-mocha-base border-mocha-overlay text-mocha-text hover:bg-mocha-surface hover:text-mocha-pink fixed bottom-4 right-4 transition-colors duration-200"
+          className="fixed bottom-4 right-4 border-mocha-overlay bg-mocha-base text-mocha-text transition-colors duration-200 hover:bg-mocha-surface hover:text-mocha-pink"
         >
           <TerminalIcon className="h-4 w-4" />
           <span className="sr-only">Open terminal</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="border-mocha-overlay bg-mocha-base sm:max-w-[1000px]">
-        <div className="bg-mocha-base text-mocha-text w-full rounded-lg p-4 shadow-lg">
+        <div className="w-full rounded-lg bg-mocha-base p-4 text-mocha-text shadow-lg">
           <div
             ref={terminalRef}
             className="scrollbar-thin scrollbar-thumb-mocha-overlay scrollbar-track-mocha-surface mb-4 h-96 overflow-y-auto"
@@ -200,20 +219,20 @@ export const TerminalModal = () => {
                   <span className="text-mocha-pink">$</span>
                   <span className="text-mocha-text">{item.command}</span>
                 </div>
-                <div className="text-mocha-subtext font-hack ml-4">
+                <div className="ml-4 font-hack text-mocha-subtext">
                   {convertLinksToElements(item.response)}
                 </div>
               </div>
             ))}
           </div>
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
-            <span className="text-mocha-pink font-mono">$</span>
+            <span className="font-mono text-mocha-pink">$</span>
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="text-mocha-text placeholder-mocha-subtext/50 focus:bg-mocha-surface/30 flex-grow rounded bg-transparent px-2 py-1 font-mono outline-none transition-all duration-200"
+              className="flex-grow rounded bg-transparent px-2 py-1 font-mono text-mocha-text placeholder-mocha-subtext/50 outline-none transition-all duration-200 focus:bg-mocha-surface/30"
               placeholder="what do you want to know?"
               aria-label="Terminal input"
             />

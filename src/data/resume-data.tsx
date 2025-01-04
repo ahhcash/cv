@@ -1,14 +1,18 @@
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
+import {
+  GitHubIcon,
+  LinkedInIcon,
+  XIcon,
+  CalendarIcon,
+} from "@/components/icons";
 
 export const RESUME_DATA = {
   name: "aakash / ahhcash",
   initials: "AS",
   location: "new york, NY",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
-  about:
-    "cs @ nyu, swe, system programming, web, ai, databases. also, gym and anime",
-  summary:
-    "i'm an aspiring 10x dev currently exploring database internals and information retrieval. i truly love building things that people will use; it fills me with a sense of excitement. i'm proficient in most fullstack frameworks, but can easily adapt to anything new. open for swe roles starting may 2025.",
+  about: "cs @ nyu, swe, systems, web dev, ai, databases. also, gym and anime",
+  hireMe:
+    "looking for a software engineer who thrives at the intersection of distributed systems, databases, and cloud infrastructure? as an engineer with experience scaling enterprise systems and a passion for building from first principles, i bring both practical expertise and deep technical curiosity to every project. graduating with my master's in computer science from nyu in may 2025 and actively seeking full-time swe roles.",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
@@ -29,6 +33,11 @@ export const RESUME_DATA = {
         name: "X",
         url: "https://twitter.com/aahhcash",
         icon: XIcon,
+      },
+      {
+        name: "calendar",
+        url: "https://cal.com/ahhcash/30min",
+        icon: CalendarIcon,
       },
     ],
   },
