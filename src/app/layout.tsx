@@ -34,10 +34,11 @@ export const metadata: Metadata = {
       "cs @ nyu, swe, systems, web dev, ai, databases. also, gym and anime",
     images: [
       {
-        url: "https://ahhcash.xyz/og-image.png", // Add this image to your public folder
+        url: "https://ahhcash.xyz/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ahhcash's portfolio",
+        alt: "ahhcash - Software Engineer",
+        type: "image/png",
       },
     ],
   },
@@ -60,6 +61,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  metadataBase: new URL("https://ahhcash.xyz"),
 };
 
 const jetbrainsMono = JetBrains_Mono({

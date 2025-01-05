@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ahhcash.xyz
+
+# Sitemaps
+Sitemap: https://ahhcash.xyz/sitemap.xml
