@@ -17,17 +17,11 @@ export const RESUME_DATA = {
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
     email: "dev@ahhcash.xyz",
-    tel: "+15513759829",
     social: [
       {
         name: "github",
         url: "https://github.com/ahhcash",
         icon: GitHubIcon,
-      },
-      {
-        name: "linkedin",
-        url: "https://www.linkedin.com/in/aakash217/",
-        icon: LinkedInIcon,
       },
       {
         name: "X",
