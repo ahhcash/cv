@@ -71,27 +71,27 @@ export const CommandMenu = ({ links }: Props) => {
         style={{ marginTop: "0.5rem" }}
         aria-hidden={!isVisible}
       >
-        <div className="border-mocha-overlay bg-mocha-base/80 glow-effect flex items-center gap-8 rounded-lg border px-6 py-2 backdrop-blur-sm">
+        <div className="glow-effect flex items-center gap-8 rounded-lg border border-mocha-overlay bg-mocha-base/80 px-6 py-2 backdrop-blur-sm">
           {/* Search Command */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Button
                 onClick={() => setOpen((open) => !open)}
                 variant="ghost"
-                className="text-mocha-subtext hover:text-mocha-pink hover:bg-mocha-pink/10 h-auto p-0 font-mono text-sm transition-all duration-200"
+                className="h-auto p-0 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-pink/10 hover:text-mocha-pink"
               >
                 search
               </Button>
-              <span className="text-mocha-subtext/50 text-xs">(</span>
-              <kbd className="text-mocha-subtext bg-mocha-overlay/30 rounded px-1.5 py-0.5 font-mono text-xs">
+              <span className="text-xs text-mocha-subtext/50">(</span>
+              <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext">
                 {isMac ? "⌘" : "Ctrl"}K
               </kbd>
-              <span className="text-mocha-subtext/50 text-xs">)</span>
+              <span className="text-xs text-mocha-subtext/50">)</span>
             </div>
           </div>
 
           {/* Separator between shortcuts */}
-          <div className="bg-mocha-overlay h-4 w-px" />
+          <div className="h-4 w-px bg-mocha-overlay" />
 
           {/* Terminal Command */}
           <div className="flex items-center gap-4">
@@ -99,15 +99,15 @@ export const CommandMenu = ({ links }: Props) => {
               <Button
                 onClick={handleTerminalClick}
                 variant="ghost"
-                className="text-mocha-subtext hover:text-mocha-pink hover:bg-mocha-pink/10 h-auto p-0 font-mono text-sm transition-all duration-200"
+                className="h-auto p-0 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-pink/10 hover:text-mocha-pink"
               >
                 cashbot
               </Button>
-              <span className="text-mocha-subtext/50 text-xs">(</span>
-              <kbd className="text-mocha-subtext bg-mocha-overlay/30 rounded px-1.5 py-0.5 font-mono text-xs">
+              <span className="text-xs text-mocha-subtext/50">(</span>
+              <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext">
                 {isMac ? "⌘" : "Ctrl"}J
               </kbd>
-              <span className="text-mocha-subtext/50 text-xs">)</span>
+              <span className="text-xs text-mocha-subtext/50">)</span>
             </div>
           </div>
         </div>
@@ -119,21 +119,9 @@ export const CommandMenu = ({ links }: Props) => {
           className="border-b-mocha-overlay bg-mocha-base text-mocha-text placeholder:text-mocha-subtext"
         />
         <CommandList className="bg-mocha-base">
-          <CommandEmpty className="text-mocha-subtext px-2 py-2 text-base">
+          <CommandEmpty className="px-2 py-2 text-base text-mocha-subtext">
             no results found.
           </CommandEmpty>
-          <CommandGroup heading="Actions" className="text-mocha-lavender">
-            <CommandItem
-              onSelect={() => {
-                setOpen(false);
-                window.location.href =
-                  "https://drive.google.com/file/d/1TPIMfScRG3oUDAElL-8an3xhpxc3WHJa/view?usp=sharing";
-              }}
-              className="text-mocha-text hover:bg-mocha-surface hover:text-mocha-blue"
-            >
-              <span>print</span>
-            </CommandItem>
-          </CommandGroup>
           <CommandGroup heading="Links" className="text-mocha-lavender">
             {links.map(({ url, title }) => (
               <CommandItem
