@@ -150,8 +150,8 @@ export const RESUME_DATA = {
       description:
         "a lightweight key-value vector database built from the ground up in Go, with LSM tree storage and multi-provider embedding support for efficient similarity search.",
       link: {
-        label: "GitHub",
-        href: "https://github.com/ahhcash/ghastly",
+        label: "Demo",
+        href: "https://ghastly-demo.vercel.app",
       },
       bgImageUrl:
         "https://wallpapers.com/images/hd/shunsui-kyoraku-1920-x-1080-wallpaper-0dg6jqf2v7digp5k.jpg",
@@ -188,7 +188,7 @@ export const RESUME_DATA = {
         "a multimodal search pipeline using mixpeek that lets you semantically search for [REDACTED]",
       link: {
         label: "GitHub",
-        href: "https://grotle-one.vercel.app",
+        href: "https://scenewise.xyz",
       },
       bgImageUrl: "https://images6.alphacoders.com/135/1353804.png",
     },
