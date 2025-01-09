@@ -8,9 +8,10 @@ import {
 export const RESUME_DATA = {
   name: "aakash / ahhcash",
   initials: "AS",
-  location: "new york, NY",
+  location: "nyc",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
-  about: "cs @ nyu, swe, systems, web dev, ai, databases. also, gym and anime",
+  about:
+    "cs @ nyu, swe, systems, web dev, ai. open to swe roles from may 2025.",
   hireMe:
     "looking for a software engineer who thrives at the intersection of distributed systems, databases, and cloud infrastructure? as an engineer with experience scaling enterprise systems and a passion for building from first principles, i bring both practical expertise and deep technical curiosity to every project. graduating with my master's in computer science from nyu in may 2025 and actively seeking full-time swe roles.",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",

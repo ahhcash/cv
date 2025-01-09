@@ -121,30 +121,6 @@ export default function Page() {
             })}
           </Section>
 
-          <Section title="education">
-            {RESUME_DATA.education.map((education) => {
-              return (
-                <div key={education.school} className="mb-3 last:mb-0">
-                  <div className="group relative flex flex-col gap-2.5 rounded-lg bg-mocha-surface/50 p-5 backdrop-blur-sm transition-all hover:bg-mocha-surface">
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <h3 className="text-lg font-medium leading-none text-mocha-text">
-                          {education.school}
-                        </h3>
-                        <div className="mt-1.5 text-base text-mocha-subtext">
-                          {education.degree}
-                        </div>
-                      </div>
-                      <div className="text-sm tabular-nums text-mocha-subtext">
-                        {education.start} - {education.end}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </Section>
-
           <Section
             title="projects"
             className="print-force-new-page scroll-mb-16"
