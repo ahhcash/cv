@@ -1,25 +1,24 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CommandMenu } from "@/components/command-menu";
 import { TerminalModal } from "@/components/terminal-modal";
-import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
 import { ParticlesBackground } from "@/components/particles-background";
+import { Navbar } from "@/components/navbar";
 
 export default function Page() {
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative min-h-screen w-full overflow-x-hidden">
       <ParticlesBackground />
-      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto bg-mocha-base p-4 md:p-16 print:p-12">
-        <section className="mx-auto w-full max-w-4xl space-y-10 bg-mocha-base print:space-y-8">
+      <Navbar />
+      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto p-4 pt-24 md:p-16 md:pt-28 print:p-12">
+        <section className="mx-auto w-full max-w-4xl space-y-10 print:space-y-8">
           <div className="flex items-center justify-between">
             <div className="flex-1 space-y-2">
-              <h1 className="bg-gradient-to-r from-mocha-mauve to-mocha-blue bg-clip-text font-hack text-3xl font-bold text-transparent">
+              <h1 className="bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-text font-hack text-4xl font-bold text-transparent">
                 {RESUME_DATA.name}
               </h1>
               <p className="text-pretty font-mono text-base text-mocha-text">
@@ -78,16 +77,18 @@ export default function Page() {
               <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
             </Avatar>
           </div>
+
           <Section title="hire me">
             <p className="text-pretty font-mono text-base text-mocha-text">
               {RESUME_DATA.hireMe}
             </p>
           </Section>
+
           <Section title="work">
             {RESUME_DATA.work.map((work) => {
               return (
                 <div key={work.company} className="mb-3 last:mb-0">
-                  <div className="group relative flex flex-col gap-2.5 rounded-lg bg-mocha-surface/50 p-5 transition-all hover:bg-mocha-surface">
+                  <div className="group relative flex flex-col gap-2.5 rounded-lg bg-mocha-surface/50 p-5 backdrop-blur-sm transition-all hover:bg-mocha-surface">
                     <div className="flex items-center justify-between gap-4">
                       <div>
                         <div className="flex items-center gap-2.5">
@@ -111,7 +112,6 @@ export default function Page() {
                         {work.start} - {work.end}
                       </div>
                     </div>
-
                     <div className="text-sm text-mocha-subtext">
                       {work.description}
                     </div>
@@ -125,7 +125,7 @@ export default function Page() {
             {RESUME_DATA.education.map((education) => {
               return (
                 <div key={education.school} className="mb-3 last:mb-0">
-                  <div className="group relative flex flex-col gap-2.5 rounded-lg bg-mocha-surface/50 p-5 transition-all hover:bg-mocha-surface">
+                  <div className="group relative flex flex-col gap-2.5 rounded-lg bg-mocha-surface/50 p-5 backdrop-blur-sm transition-all hover:bg-mocha-surface">
                     <div className="flex items-center justify-between gap-4">
                       <div>
                         <h3 className="text-lg font-medium leading-none text-mocha-text">
@@ -144,9 +144,11 @@ export default function Page() {
               );
             })}
           </Section>
+
           <Section
             title="projects"
             className="print-force-new-page scroll-mb-16"
+            id="projects"
           >
             <div className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
               {RESUME_DATA.projects.map((project) => {
@@ -175,18 +177,6 @@ export default function Page() {
             </div>
           </Section>
         </section>
-        <CommandMenu
-          links={[
-            {
-              url: RESUME_DATA.personalWebsiteUrl,
-              title: "blog",
-            },
-            ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-              url: socialMediaLink.url,
-              title: socialMediaLink.name,
-            })),
-          ]}
-        />
         <TerminalModal />
       </main>
     </div>

@@ -6,6 +6,7 @@ import { JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
+import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -102,6 +103,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://ahhcash.xyz" />
       </head>
       <body className="bg-[#1e1e2e]">
+        <Navbar />
         {children}
         <Analytics />
         <SpeedInsights />

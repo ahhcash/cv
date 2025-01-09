@@ -20,13 +20,12 @@ export const CommandMenu = ({ links }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(false);
   const [isMac, setIsMac] = React.useState(false);
+
   React.useEffect(() => {
-    // Check if user is on macOS
     setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
   }, []);
 
   React.useEffect(() => {
-    // Keyboard shortcuts remain active regardless of menu visibility
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -36,29 +35,19 @@ export const CommandMenu = ({ links }: Props) => {
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []); // Removed isVisible dependency since shortcuts should always work
+  }, []);
 
   React.useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsVisible(scrollPosition > 20);
+      // Increased scroll threshold to 100px
+      setIsVisible(scrollPosition > 100);
     };
 
-    // Initial check when component mounts
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleTerminalClick = () => {
-    // The click handler remains active, but the button itself will be hidden
-    const event = new KeyboardEvent("keydown", {
-      key: "j",
-      metaKey: true,
-      bubbles: true,
-    });
-    document.dispatchEvent(event);
-  };
 
   return (
     <>
@@ -71,44 +60,20 @@ export const CommandMenu = ({ links }: Props) => {
         style={{ marginTop: "0.5rem" }}
         aria-hidden={!isVisible}
       >
-        <div className="glow-effect flex items-center gap-8 rounded-lg border border-mocha-overlay bg-mocha-base/80 px-6 py-2 backdrop-blur-sm">
-          {/* Search Command */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Button
-                onClick={() => setOpen((open) => !open)}
-                variant="ghost"
-                className="h-auto p-0 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-pink/10 hover:text-mocha-pink"
-              >
-                search
-              </Button>
-              <span className="text-xs text-mocha-subtext/50">(</span>
-              <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext">
-                {isMac ? "⌘" : "Ctrl"}K
-              </kbd>
-              <span className="text-xs text-mocha-subtext/50">)</span>
-            </div>
-          </div>
-
-          {/* Separator between shortcuts */}
-          <div className="h-4 w-px bg-mocha-overlay" />
-
-          {/* Terminal Command */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Button
-                onClick={handleTerminalClick}
-                variant="ghost"
-                className="h-auto p-0 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-pink/10 hover:text-mocha-pink"
-              >
-                cashbot
-              </Button>
-              <span className="text-xs text-mocha-subtext/50">(</span>
-              <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext">
-                {isMac ? "⌘" : "Ctrl"}J
-              </kbd>
-              <span className="text-xs text-mocha-subtext/50">)</span>
-            </div>
+        <div className="glow-effect flex items-center rounded-lg border border-mocha-overlay bg-mocha-base/80 px-6 py-2 backdrop-blur-sm">
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={() => setOpen((open) => !open)}
+              variant="ghost"
+              className="h-auto p-0 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-pink/10 hover:text-mocha-pink"
+            >
+              search
+            </Button>
+            <span className="text-xs text-mocha-subtext/50">(</span>
+            <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext">
+              {isMac ? "⌘" : "Ctrl"}K
+            </kbd>
+            <span className="text-xs text-mocha-subtext/50">)</span>
           </div>
         </div>
       </div>

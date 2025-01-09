@@ -1,7 +1,7 @@
 "use client";
 import { useCallback } from "react";
 import Particles from "react-particles";
-import type { Container, Engine } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim";
 
 export function ParticlesBackground() {
@@ -12,11 +12,11 @@ export function ParticlesBackground() {
   return (
     <Particles
       id="tsparticles"
-      className="fixed inset-0 -z-10" // Changed to fixed positioning
+      className="!fixed fixed inset-0 -z-10 h-screen w-screen"
       init={particlesInit}
       options={{
         fullScreen: {
-          enable: true,
+          enable: false, // Changed to false so we can control positioning
           zIndex: -1,
         },
         background: {
@@ -71,7 +71,7 @@ export function ParticlesBackground() {
             options: {
               particles: {
                 number: {
-                  value: 50, // Reduced for mobile
+                  value: 50,
                 },
               },
             },
