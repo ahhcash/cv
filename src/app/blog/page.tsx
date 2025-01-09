@@ -24,8 +24,7 @@ export default async function BlogPage() {
               ahhcash&apos;s blog
             </h1>
             <p className="font-mono text-base text-mocha-text">
-              thoughts on software engineering, distributed systems, and random
-              tech stuff
+              trying to yap my way through life
             </p>
           </div>
 
