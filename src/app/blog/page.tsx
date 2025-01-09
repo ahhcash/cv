@@ -6,8 +6,7 @@ import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog | ahhcash",
-  description:
-    "Thoughts on software engineering, systems design, and technology",
+  description: "trying to yap my way through life",
 };
 
 export default async function BlogPage() {
