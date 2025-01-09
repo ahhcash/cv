@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { getPostBySlug, getAllPosts, type BlogPost } from "@/lib/blog";
 import { getMDXComponent } from "mdx-bundler/client";
+import { Metadata } from "next";
 
 interface BlogPostPageProps {
   params: {
@@ -20,17 +21,29 @@ export async function generateStaticParams(): Promise<
   }));
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
+
   if (!post) {
     return {
       title: "Blog Post Not Found | ahhcash",
       description: "The requested blog post could not be found.",
     };
   }
+
+  const { frontmatter } = post;
+
   return {
-    title: `${post.frontmatter.title} | ahhcash`,
-    description: post.frontmatter.preview,
+    title: `${frontmatter.title} | ahhcash`,
+    description: frontmatter.preview,
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.preview,
+      type: "article",
+      publishedTime: frontmatter.date,
+    },
   };
 }
 
@@ -46,10 +59,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="relative min-h-screen w-full">
       <ParticlesBackground />
-      {/* Added consistent padding and adjusted spacing */}
       <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto p-4 pt-24 md:p-16 md:pt-28 print:p-12">
         <article className="prose-mocha prose prose-invert mx-auto max-w-4xl">
-          {/* Back to blog link with adjusted spacing */}
           <div className="mb-12">
             <Link
               href="/blog"
@@ -60,7 +71,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </Link>
           </div>
 
-          {/* Blog post header with consistent text size */}
           <header className="mb-12">
             <h1 className="bg-gradient-to-r from-mocha-mauve to-mocha-blue bg-clip-text font-hack text-4xl font-bold text-transparent">
               {post.frontmatter.title}

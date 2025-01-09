@@ -25,10 +25,8 @@ export interface BlogPost {
 
 // Get all blog posts metadata
 export async function getAllPosts(): Promise<BlogPostMeta[]> {
-  // Read all files from the blog directory
   const files = fs.readdirSync(POSTS_PATH);
 
-  // Get posts data
   const posts = await Promise.all(
     files
       .filter((file) => /\.mdx?$/.test(file))
@@ -44,23 +42,23 @@ export async function getAllPosts(): Promise<BlogPostMeta[]> {
       }),
   );
 
-  // Sort posts by date
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 }
 
 // Get a specific blog post by slug
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const filePath = path.join(POSTS_PATH, `${slug}.mdx`);
 
-  // Ensure the file exists
   if (!fs.existsSync(filePath)) {
     return null;
   }
 
   const source = fs.readFileSync(filePath, "utf8");
-  const { code, frontmatter } = await bundleMDX({
+
+  // Bundle the MDX file
+  const { code, frontmatter: rawFrontmatter } = await bundleMDX({
     source,
     mdxOptions(options) {
       options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm];
@@ -73,11 +71,17 @@ export async function getPostBySlug(slug: string) {
     },
   });
 
+  // Ensure all required metadata fields are present
+  const frontmatter: BlogPostMeta = {
+    title: rawFrontmatter.title,
+    date: rawFrontmatter.date,
+    slug: slug,
+    preview: rawFrontmatter.preview,
+    readingTime: rawFrontmatter.readingTime,
+  };
+
   return {
-    frontmatter: {
-      ...frontmatter,
-      slug,
-    },
+    frontmatter,
     code,
   };
 }
