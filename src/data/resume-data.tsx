@@ -6,14 +6,14 @@ import {
 } from "@/components/icons";
 
 export const RESUME_DATA = {
-  name: "aakash / ahhcash",
+  name: "hey, i'm aakash",
   initials: "AS",
   location: "nyc",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
   about:
-    "cs @ nyu, swe, systems, web dev, ai. open to swe roles from may 2025.",
+    "cs grad student @ nyu wrapping up in may 2025. in love with systems, ai & web dev. open to swe roles!",
   hireMe:
-    "looking for a software engineer who thrives at the intersection of distributed systems, databases, and cloud infrastructure? as an engineer with experience scaling enterprise systems and a passion for building from first principles, i bring both practical expertise and deep technical curiosity to every project. graduating with my master's in computer science from nyu in may 2025 and actively seeking full-time swe roles.",
+    "engineering at heart with a sweet spot for distributed systems and databases. worked on scaling enterprise systems at cloudera, currently building side projects. wrapping up my master's at nyu in may 2025 - let's build something cool together!",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {

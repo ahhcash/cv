@@ -115,3 +115,19 @@
       0 0 30px 4px rgba(137, 180, 250, 0.15);
   }
 }
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(203, 166, 247, 0.8);
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: 0 0 3px rgba(203, 166, 247, 0.3);
+  }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s ease-in-out infinite;
+}

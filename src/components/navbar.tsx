@@ -13,6 +13,8 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { RESUME_DATA } from "@/data/resume-data";
+import { Menu, X } from "lucide-react";
+import { Button } from "./ui/button";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -20,6 +22,7 @@ export function Navbar() {
   const [isMac, setIsMac] = useState(false);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +35,7 @@ export function Navbar() {
 
   useEffect(() => {
     setOpen(false);
+    setMobileMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -76,7 +80,7 @@ export function Navbar() {
       label: (
         <span className="flex items-center gap-2">
           cashbot
-          <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext">
+          <kbd className="hidden rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext sm:inline-block">
             {isMac ? "⌘" : "Ctrl"}J
           </kbd>
         </span>
@@ -112,7 +116,20 @@ export function Navbar() {
         )}
       >
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
-          <ul className="flex items-center gap-6">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="rounded-lg p-2 text-mocha-subtext transition-colors hover:bg-mocha-surface/80 hover:text-mocha-text md:hidden"
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+
+          {/* Desktop navigation */}
+          <ul className="hidden items-center gap-6 md:flex">
             {mainNavItems.map((item, index) => (
               <li key={index}>
                 {item.onClick ? (
@@ -145,12 +162,69 @@ export function Navbar() {
 
           <button
             onClick={() => setOpen(true)}
-            className="rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text"
+            className="hidden rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text md:block"
           >
             <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs">
               {isMac ? "⌘" : "Ctrl"}K
             </kbd>
           </button>
+        </div>
+
+        {/* Mobile menu */}
+        <div
+          className={cn(
+            "absolute left-0 right-0 top-full border-b border-mocha-overlay bg-mocha-base/95 backdrop-blur-sm transition-all duration-200 md:hidden",
+            mobileMenuOpen ? "block" : "hidden",
+          )}
+        >
+          <ul className="flex flex-col space-y-2 p-4">
+            {mainNavItems.map((item, index) => (
+              <li key={index}>
+                {item.onClick ? (
+                  <button
+                    onClick={() => {
+                      item.onClick();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text"
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "block w-full rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text",
+                      pathname === item.href && "text-mocha-text",
+                    )}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      item.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+            <li>
+              <button
+                onClick={() => {
+                  setOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="flex w-full items-center justify-between rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text"
+              >
+                <span>Search</span>
+                <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs">
+                  {isMac ? "⌘" : "Ctrl"}K
+                </kbd>
+              </button>
+            </li>
+          </ul>
         </div>
       </nav>
 
