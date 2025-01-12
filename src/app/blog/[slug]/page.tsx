@@ -59,9 +59,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="relative min-h-screen w-full">
       <ParticlesBackground />
-      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto p-4 pt-24 md:p-16 md:pt-28 print:p-12">
-        <article className="prose-mocha prose prose-invert mx-auto max-w-4xl">
-          <div className="mb-12">
+      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto px-4 pt-16 md:px-16 print:p-12">
+        <article className="prose prose-invert prose-mocha mx-auto max-w-4xl">
+          <div className="mb-8">
             <Link
               href="/blog"
               className="group inline-flex items-center gap-2 font-mono text-sm text-mocha-subtext no-underline transition-colors hover:text-mocha-text"
@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </time>
           </header>
 
-          <div className="prose-code:bg-mocha-surface prose-pre:bg-mocha-surface prose-a:text-mocha-blue prose-a:no-underline prose-a:transition-colors hover:prose-a:text-mocha-lavender prose-strong:text-mocha-text prose-code:rounded prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-mocha-text">
+          <div className="prose-a:text-mocha-blue prose-a:no-underline prose-a:transition-colors hover:prose-a:text-mocha-lavender prose-strong:text-mocha-text prose-code:rounded prose-code:bg-mocha-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-mocha-text prose-pre:bg-mocha-surface">
             <Content />
           </div>
         </article>

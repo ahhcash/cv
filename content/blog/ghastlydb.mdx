@@ -11,10 +11,10 @@ we stored our semantic index on chromaDB and the entire thing had to be moved ov
 before choosing lanceDB, i had to perform a complete case study / vendor analysis to choose the right kind of vector database
 for our use case. this single case study got me super interested in how vector DBs work under the hood, and that sparked this entire three month journey.
 
-## how it began?
+### inspiration
 initially, i kinda wanted to build a CLI tool that could index my entire machine in a vector database. i could then easily perform semantic search
 
-## how?
+## how did i get started?
 i looked at this particular blog from [scyllaDB](https://www.scylladb.com/) about [log strucutred merge trees](https://www.scylladb.com/glossary/log-structured-merge-tree/)
 to see how databases store data. after understanding how in memory memtables and on disk SSTables work together to store data, i decided to build these two out from scratch.
 
@@ -31,7 +31,7 @@ search times
 . if an element is found at any of the upper levels, we can assume that the key is present in the database
 .
 
-## bringing it together
+## bringing it all together
 using skiplists as the underlying data structure for the memtables and SSTables, it was easy to implement the basic operations.
 `put`,`get`, `delete`, `exists` and `search`.
 
@@ -47,7 +47,7 @@ currently there aree three models integrated into ghastly,
 for openai and nvidia, you'll need API keys. but colBERT can locally (like how many other vectorDBs do, ex: LanceDB) run.
 when you issue a search operation, ghasrtly performs vector search on these stored embeddings giving you a result set sorted by score
 
-## how did i do local inference?
+## my adventures with local inference
 honestly, getting local inference to run was an absolute blast. i got to explore a lot of Go libraries that enabled me to run huggingfadce pipelienes
 locally. i looked at github user [sugarme's transformers library](https://github.com/sugarme/transformer) and [knights-analytics' hugot](https://github.com/knights-analytics/hugot).
 i settled on hugot because it was super straightforward. their README is also pretty neat which helped me get everything running.

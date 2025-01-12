@@ -15,9 +15,7 @@ export default async function BlogPage() {
   return (
     <div className="relative min-h-screen w-full">
       <ParticlesBackground />
-      {/* Removed the bg-mocha-base class from main to allow particles to show through */}
-      <main className="content-container container relative mx-auto min-h-screen scroll-my-12 overflow-auto p-4 pt-24 md:p-16 md:pt-28 print:p-12">
-        {/* Removed the bg-mocha-base class from section as well */}
+      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto px-4 pt-16 md:px-16 print:p-12">
         <section className="mx-auto w-full max-w-4xl space-y-8">
           <div className="space-y-4">
             <h1 className="bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-text font-hack text-4xl font-bold text-transparent">
@@ -35,11 +33,9 @@ export default async function BlogPage() {
                 href={`/blog/${post.slug}`}
                 className="transition-all duration-300 hover:scale-[1.02]"
               >
-                {/* Added backdrop-blur-sm to improve readability while maintaining transparency */}
                 <Card className="group border-mocha-overlay bg-mocha-surface/50 backdrop-blur-sm transition-all duration-300 hover:border-mocha-lavender hover:bg-mocha-surface hover:shadow-[0_0_15px_rgba(203,166,247,0.15)]">
                   <CardHeader className="space-y-4 px-8 pt-8">
                     <div className="space-y-2">
-                      {/* Enhanced gradient effect for blog titles */}
                       <h2 className="bg-gradient-to-r from-mocha-lavender via-mocha-mauve to-mocha-blue bg-clip-text font-hack text-xl font-semibold text-transparent transition-all duration-300 group-hover:from-mocha-pink group-hover:via-mocha-mauve group-hover:to-mocha-lavender">
                         {post.title}
                       </h2>
