@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/command";
 import { RESUME_DATA } from "@/data/resume-data";
 import { Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
+import { useTerminal } from "@/context/terminal-context";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -23,6 +23,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { setIsOpen: setTerminalOpen } = useTerminal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,12 +56,7 @@ export function Navbar() {
   }, []);
 
   const handleTerminalClick = () => {
-    const event = new KeyboardEvent("keydown", {
-      key: "j",
-      metaKey: true,
-      bubbles: true,
-    });
-    document.dispatchEvent(event);
+    setTerminalOpen(true);
   };
 
   const mainNavItems = [

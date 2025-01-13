@@ -7,6 +7,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
 import { Navbar } from "@/components/navbar";
+import { TerminalProvider } from "@/context/terminal-context";
+import { TerminalModal } from "@/components/terminal-modal"; // add this import
 
 export const metadata: Metadata = {
   title: {
@@ -103,8 +105,11 @@ export default function RootLayout({
         <link rel="canonical" href="https://ahhcash.xyz" />
       </head>
       <body className="bg-[#1e1e2e]">
-        <Navbar />
-        {children}
+        <TerminalProvider>
+          <Navbar />
+          <TerminalModal /> {/* add this line */}
+          {children}
+        </TerminalProvider>
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics gaId="G-SNETJBPB1B" />

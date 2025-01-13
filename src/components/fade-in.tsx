@@ -27,7 +27,7 @@ export function FadeIn({ children, delay = 0, className = "" }: FadeInProps) {
         // Reduced threshold means elements will start appearing when just 5% is visible
         threshold: 0.05,
         // Increased rootMargin means we start observing elements 150px before they enter the viewport
-        rootMargin: "200px",
+        rootMargin: "300px",
       },
     );
 

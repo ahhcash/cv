@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Terminal as TerminalIcon, ExternalLink } from "lucide-react";
+import { useTerminal } from "@/context/terminal-context";
 
 const convertLinksToElements = (text: string) => {
-  // Combined regex for URLs and email addresses
   const combinedRegex =
     /(?:(?:(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+)(?:\/[^\s,)]*)?|(?:[a-zA-Z0-9-]+\.)+(?:com|org|net|edu|gov|mil|biz|info|io|ai|dev|xyz|me|tv)(?:\/[^\s,)]*)?)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}))([,)\s])?/g;
 
@@ -19,7 +19,7 @@ const convertLinksToElements = (text: string) => {
       elements.push(text.slice(lastIndex, match.index));
     }
 
-    const isEmail = match[2]; // Email match group
+    const isEmail = match[2];
     const content = isEmail
       ? match[2]
       : match[1]
@@ -35,9 +35,7 @@ const convertLinksToElements = (text: string) => {
         <a
           key={match.index}
           href={`mailto:${content}`}
-          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5
-          text-mocha-blue decoration-mocha-blue/30 transition-all
-          duration-200 hover:bg-mocha-blue/10 hover:text-mocha-blue hover:underline"
+          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-mocha-blue decoration-mocha-blue/30 transition-all duration-200 hover:bg-mocha-blue/10 hover:text-mocha-blue hover:underline"
         >
           {content}
           <ExternalLink className="h-3 w-3" />
@@ -47,16 +45,13 @@ const convertLinksToElements = (text: string) => {
       const fullUrl = content.startsWith("http")
         ? content
         : `https://${content.startsWith("www.") ? content.slice(4) : content}`;
-
       elements.push(
         <a
           key={match.index}
           href={fullUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5
-          text-mocha-blue decoration-mocha-blue/30 transition-all
-          duration-200 hover:bg-mocha-blue/10 hover:text-mocha-blue hover:underline"
+          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-mocha-blue decoration-mocha-blue/30 transition-all duration-200 hover:bg-mocha-blue/10 hover:text-mocha-blue hover:underline"
         >
           {content}
           <ExternalLink className="h-3 w-3" />
@@ -79,7 +74,7 @@ const convertLinksToElements = (text: string) => {
 };
 
 export const TerminalModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, setIsOpen } = useTerminal();
   const [history, setHistory] = useState<
     Array<{ command: string; response: string }>
   >([]);
@@ -89,17 +84,15 @@ export const TerminalModal = () => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "j") {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "j") {
         event.preventDefault();
-        setIsOpen((prev) => !prev);
+        setIsOpen(true);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [setIsOpen]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -129,9 +122,7 @@ export const TerminalModal = () => {
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ command, history }),
       });
 
@@ -141,43 +132,39 @@ export const TerminalModal = () => {
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder("utf-8");
-      let done = false;
       let responseText = "";
 
-      while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        if (value) {
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk
-            .split("\n")
-            .filter((line) => line.startsWith("data: "));
-          for (const line of lines) {
-            const data = line.replace(/^data: /, "").trim();
-            if (data === "[DONE]") return;
-            try {
-              const parsed = JSON.parse(data);
-              if (parsed.type === "message") {
-                let messageContent = "";
-                if (
-                  parsed.message &&
-                  parsed.message.content &&
-                  parsed.message.content[0] &&
-                  parsed.message.content[0].text
-                ) {
-                  messageContent = parsed.message.content[0].text;
-                }
-                responseText += messageContent;
-                setHistory((prev) => {
-                  const newHistory = [...prev];
-                  const lastIndex = newHistory.length - 1;
-                  newHistory[lastIndex].response = responseText;
-                  return newHistory;
-                });
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk
+          .split("\n")
+          .filter((line) => line.startsWith("data: "));
+
+        for (const line of lines) {
+          const data = line.replace(/^data: /, "").trim();
+          if (data === "[DONE]") continue;
+
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.type === "message" || parsed.type === "finalMessage") {
+              if (parsed.message && typeof parsed.message === "string") {
+                responseText = parsed.message;
+              } else if (parsed.message?.content?.[0]?.text) {
+                responseText = parsed.message.content[0].text;
               }
-            } catch (err) {
-              console.error("Error parsing stream data:", err);
+
+              setHistory((prev) => {
+                const newHistory = [...prev];
+                const lastIndex = newHistory.length - 1;
+                newHistory[lastIndex].response = responseText;
+                return newHistory;
+              });
             }
+          } catch (err) {
+            console.error("Error parsing stream data:", err);
           }
         }
       }
@@ -197,18 +184,29 @@ export const TerminalModal = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="fixed bottom-4 right-4 border-mocha-overlay bg-mocha-base text-mocha-text transition-colors duration-200 hover:bg-mocha-surface hover:text-mocha-pink"
-        >
-          <TerminalIcon className="h-4 w-4" />
-          <span className="sr-only">Open terminal</span>
-        </Button>
-      </DialogTrigger>
+      <Button
+        onClick={() => setIsOpen(true)}
+        variant="outline"
+        size="icon"
+        className="fixed bottom-4 right-4 border-mocha-overlay bg-mocha-base text-mocha-text transition-colors duration-200 hover:bg-mocha-surface hover:text-mocha-pink"
+      >
+        <TerminalIcon className="h-4 w-4" />
+        <span className="sr-only">Open terminal</span>
+      </Button>
+
       <DialogContent className="border-mocha-overlay bg-mocha-base sm:max-w-[1000px]">
         <div className="w-full rounded-lg bg-mocha-base p-4 text-mocha-text shadow-lg">
+          {/* Welcome message */}
+          <div className="animate-fade-in mb-6 space-y-2 border-b border-mocha-overlay pb-4">
+            <div className="flex items-center gap-2 font-mono">
+              <span className="bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-text font-mono text-transparent">
+                hi! i&apos;m cashbot, a chatbot designed to speak like aakash.
+                ask me anything!
+              </span>
+            </div>
+          </div>
+
+          {/* Chat history */}
           <div
             ref={terminalRef}
             className="scrollbar-thin scrollbar-thumb-mocha-overlay scrollbar-track-mocha-surface mb-4 h-96 overflow-y-auto"
@@ -225,6 +223,8 @@ export const TerminalModal = () => {
               </div>
             ))}
           </div>
+
+          {/* Input form */}
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <span className="font-mono text-mocha-pink">$</span>
             <input
