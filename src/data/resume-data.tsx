@@ -13,7 +13,7 @@ export const RESUME_DATA = {
   about:
     "cs grad student @ nyu wrapping up in may 2025. in love with systems, ai & web dev. open to swe roles!",
   hireMe:
-    "engineering at heart with a sweet spot for distributed systems and databases. worked on scaling enterprise systems at cloudera, currently building side projects. wrapping up my master's at nyu in may 2025 - let's build something cool together!",
+    "engineering at heart with a sweet spot for distributed systems and databases. worked on scaling enterprise systems at cloudera, currently building side projects. wrapping up my master's at nyu in may 2025 - looking for full time swe roles!",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
