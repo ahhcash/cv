@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ParticlesBackground } from "@/components/particles-background";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
+import TypedText from "@/components/typed-text";
 
 export const metadata: Metadata = {
   title: "Blog | ahhcash",
@@ -15,11 +16,11 @@ export default async function BlogPage() {
   return (
     <div className="relative min-h-screen w-full">
       <ParticlesBackground />
-      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto px-4 pt-16 md:px-16 print:p-12">
+      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto px-4 pt-24 md:p-16 md:pt-28 print:p-12">
         <section className="mx-auto w-full max-w-4xl space-y-8">
           <div className="space-y-4">
             <h1 className="bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-text font-hack text-4xl font-bold text-transparent">
-              ahhcash&apos;s blog
+              <TypedText text="ahhcash's blog" />
             </h1>
             <p className="font-mono text-base text-mocha-text">
               trying to yap my way through life

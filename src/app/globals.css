@@ -50,6 +50,9 @@
     @apply bg-background text-foreground;
     font-family: "JetBrains Mono", monospace;
   }
+  html {
+    scroll-behavior: smooth; /* This enables smooth scrolling globally */
+  }
 }
 
 .print-force-new-page {

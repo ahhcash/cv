@@ -1,9 +1,4 @@
-import {
-  GitHubIcon,
-  LinkedInIcon,
-  XIcon,
-  CalendarIcon,
-} from "@/components/icons";
+import { GitHubIcon, XIcon, CalendarIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
   name: "hey, i'm aakash",
@@ -139,7 +134,7 @@ export const RESUME_DATA = {
       bgImageUrl: "https://w.wallhaven.cc/full/vq/wallhaven-vq5vd8.png",
     },
     {
-      title: "GhastlyDB (WIP)",
+      title: "GhastlyDB",
       techStack: [
         "go",
         "embedding models",
@@ -152,7 +147,7 @@ export const RESUME_DATA = {
         "a lightweight key-value vector database built from the ground up in Go, with LSM tree storage and multi-provider embedding support for efficient similarity search.",
       link: {
         label: "Demo",
-        href: "https://ghastly-demo.vercel.app",
+        href: "https://ghastlydb.xyz",
       },
       bgImageUrl:
         "https://wallpapers.com/images/hd/shunsui-kyoraku-1920-x-1080-wallpaper-0dg6jqf2v7digp5k.jpg",
@@ -177,7 +172,7 @@ export const RESUME_DATA = {
       bgImageUrl: "https://wallpapercave.com/wp/wp5423003.jpg",
     },
     {
-      title: "Grotle (WIP)",
+      title: "Scenewise",
       techStack: [
         "Go",
         "HTMX",
@@ -186,7 +181,7 @@ export const RESUME_DATA = {
         "vector embeddings",
       ],
       description:
-        "a multimodal search pipeline using mixpeek that lets you semantically search for [REDACTED]",
+        "a multimodal search pipeline using mixpeek that lets you semantically search for movie trailers",
       link: {
         label: "GitHub",
         href: "https://scenewise.xyz",
@@ -194,7 +189,7 @@ export const RESUME_DATA = {
       bgImageUrl: "https://images6.alphacoders.com/135/1353804.png",
     },
     {
-      title: "Gengar (WIP)",
+      title: "Gengar",
       techStack: [
         "Go",
         "Post Quantum Encryption",

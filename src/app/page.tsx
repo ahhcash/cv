@@ -1,11 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, CalendarIcon } from "lucide-react";
+import { XIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
 import { ParticlesBackground } from "@/components/particles-background";
+import { CodingStats } from "@/components/coding-stats";
 import TypedText from "@/components/typed-text";
 import { FadeIn } from "@/components/fade-in";
 
@@ -14,8 +16,8 @@ export default function Page() {
     <div className="relative min-h-screen w-full overflow-x-hidden">
       <ParticlesBackground />
       <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto p-4 pt-24 md:p-16 md:pt-28 print:p-12">
-        <section className="mx-auto w-full max-w-4xl space-y-10 print:space-y-8">
-          <FadeIn>
+        <FadeIn>
+          <section className="mx-auto w-full max-w-4xl space-y-10 print:space-y-8">
             <div className="flex items-center justify-between">
               <div className="flex-1 space-y-2">
                 <h1 className="bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-text font-hack text-4xl font-bold text-transparent">
@@ -71,17 +73,13 @@ export default function Page() {
                 <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
               </Avatar>
             </div>
-          </FadeIn>
 
-          <FadeIn delay={200}>
             <Section title="hire me">
               <p className="text-pretty font-mono text-base text-mocha-text">
                 {RESUME_DATA.hireMe}
               </p>
             </Section>
-          </FadeIn>
 
-          <FadeIn delay={400}>
             <Section title="work">
               {RESUME_DATA.work.map((work) => {
                 return (
@@ -118,9 +116,7 @@ export default function Page() {
                 );
               })}
             </Section>
-          </FadeIn>
 
-          <FadeIn delay={600}>
             <Section
               title="projects"
               className="print-force-new-page scroll-mb-16"
@@ -152,8 +148,65 @@ export default function Page() {
                 </a>
               </div>
             </Section>
-          </FadeIn>
-        </section>
+
+            <Section id="stats" title="coding stats">
+              <CodingStats />
+            </Section>
+
+            <Section title="get in touch">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                {/* Email Card */}
+                <a
+                  href="mailto:dev@ahhcash.xyz"
+                  className="group relative overflow-hidden rounded-lg border border-mocha-overlay bg-mocha-surface/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-mocha-mauve hover:bg-mocha-surface/60"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-mocha-mauve/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="relative z-10 flex flex-col items-center gap-3 text-center">
+                    <MailIcon className="h-8 w-8 text-mocha-mauve transition-transform duration-300 group-hover:scale-110" />
+                    <p className="font-mono text-sm text-mocha-subtext">
+                      slide in the inbox
+                    </p>
+                    <span className="text-mocha-text">dev@ahhcash.xyz</span>
+                  </div>
+                </a>
+
+                {/* Calendar Card */}
+                <a
+                  href="https://cal.com/ahhcash/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden rounded-lg border border-mocha-overlay bg-mocha-surface/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-mocha-pink hover:bg-mocha-surface/60"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-mocha-pink/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="relative z-10 flex flex-col items-center gap-3 text-center">
+                    <CalendarIcon className="h-8 w-8 text-mocha-pink transition-transform duration-300 group-hover:scale-110" />
+                    <p className="font-mono text-sm text-mocha-subtext">
+                      let&apos;s chat
+                    </p>
+                    <span className="text-mocha-text">book a meeting</span>
+                  </div>
+                </a>
+
+                {/* Twitter Card */}
+                <a
+                  href="https://twitter.com/aahhcash"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden rounded-lg border border-mocha-overlay bg-mocha-surface/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-mocha-blue hover:bg-mocha-surface/60"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-mocha-blue/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="relative z-10 flex flex-col items-center gap-3 text-center">
+                    <XIcon className="h-8 w-8 text-mocha-blue transition-transform duration-300 group-hover:scale-110" />
+                    <p className="font-mono text-sm text-mocha-subtext">
+                      dm me on X
+                    </p>
+                    <span className="text-mocha-text">@aahhcash</span>
+                  </div>
+                </a>
+              </div>
+            </Section>
+          </section>
+        </FadeIn>
       </main>
     </div>
   );

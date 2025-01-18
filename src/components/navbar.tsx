@@ -69,13 +69,21 @@ export function Navbar() {
       href: "/blog",
     },
     {
+      label: "stats",
+      href: "/#stats",
+    },
+    {
       label: "contact",
       href: "https://cal.com/ahhcash/30min",
     },
     {
       label: (
-        <span className="flex items-center gap-2">
+        <span className="group relative flex items-center gap-2">
           cashbot
+          {/* Continuous pulsating gradient background */}
+          <span className="absolute -inset-x-4 -inset-y-2 -z-10 animate-pulse rounded-lg bg-gradient-to-r from-mocha-mauve/20 via-mocha-pink/20 to-mocha-blue/20 blur-md"></span>
+          {/* Glowing border that's always visible but intensifies on hover */}
+          <span className="absolute -inset-x-4 -inset-y-2 -z-10 rounded-lg border border-transparent bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-border opacity-20 transition-opacity duration-500 group-hover:opacity-40"></span>
           <kbd className="hidden rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext sm:inline-block">
             {isMac ? "⌘" : "Ctrl"}J
           </kbd>

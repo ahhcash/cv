@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getPostBySlug, getAllPosts, type BlogPost } from "@/lib/blog";
 import { getMDXComponent } from "mdx-bundler/client";
 import { Metadata } from "next";
+import TypedText from "@/components/typed-text";
 
 interface BlogPostPageProps {
   params: {
@@ -59,7 +60,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="relative min-h-screen w-full">
       <ParticlesBackground />
-      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto px-4 pt-16 md:px-16 print:p-12">
+      <main className="container relative mx-auto min-h-screen scroll-my-12 overflow-auto px-4 pt-24 md:p-16 md:pt-28 print:p-12">
         <article className="prose prose-invert prose-mocha mx-auto max-w-4xl">
           <div className="mb-8">
             <Link
@@ -73,7 +74,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <header className="mb-12">
             <h1 className="bg-gradient-to-r from-mocha-mauve to-mocha-blue bg-clip-text font-hack text-4xl font-bold text-transparent">
-              {post.frontmatter.title}
+              <TypedText text={post.frontmatter.title} />
             </h1>
             <time
               dateTime={post.frontmatter.date}
