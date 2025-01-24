@@ -1,25 +1,23 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
-const WAKATIME_API_KEY = process.env.WAKATIME_API_KEY;
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+);
 
 export async function GET() {
   try {
-    const auth = Buffer.from(WAKATIME_API_KEY || "").toString("base64");
-    const response = await fetch(
-      "https://wakatime.com/api/v1/users/current/stats/last_30_days",
-      {
-        headers: {
-          Authorization: `Basic ${auth}`,
-        },
-      },
-    );
+    const { data, error } = await supabase
+      .from("wakatime_stats")
+      .select("stats")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
 
-    if (!response.ok) {
-      throw new Error(`WakaTime API error: ${response.statusText}`);
-    }
+    if (error) throw error;
 
-    const data = await response.json();
-    return NextResponse.json(data);
+    return NextResponse.json(data.stats);
   } catch (error) {
     console.error("Error fetching WakaTime stats:", error);
     return NextResponse.json(
