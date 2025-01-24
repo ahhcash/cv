@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: trigger stats update
         run: |
-          curl -X POST ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}/api/stats/update \
+          curl -X POST ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}/api/update \
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer ${{ secrets.UPDATE_STATS_SECRET }}" \
           -d '{}'
