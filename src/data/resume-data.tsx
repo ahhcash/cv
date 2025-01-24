@@ -111,13 +111,13 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
-      title: "medical healthscribe",
-      techStack: ["java", "spring", "swing", "openAI", "postgreSQL"],
+      title: "Gallade",
+      techStack: ["Rust", "Java", "Concurrent Programming", "Maven", "Gradle"],
       description:
-        "created a real-time speech to text transcriber for patient-clinician interactions with AI powered NLP capabilities.",
+        "a faster build system + dependency manager for the Java ecosystem built from the ground up in Rust",
       link: {
         label: "GitHub",
-        href: "https://github.com/ahhcash/speech-to-text",
+        href: "https://github.com/ahhcash/gallade",
       },
       bgImageUrl:
         "https://wallpapers.com/images/hd/roy-mustang-1440-x-2586-wallpaper-a1pzyjufb2gp1zzv.jpg",

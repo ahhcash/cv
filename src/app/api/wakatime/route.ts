@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const auth = Buffer.from(WAKATIME_API_KEY || "").toString("base64");
     const response = await fetch(
-      "https://wakatime.com/api/v1/users/current/stats/last_30_days",
+      "https://wakatime.com/api/v1/users/current/stats/last_7_days",
       {
         headers: {
           Authorization: `Basic ${auth}`,
