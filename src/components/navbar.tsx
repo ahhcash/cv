@@ -25,6 +25,17 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { setIsOpen: setTerminalOpen } = useTerminal();
 
+  const [isFromTwitter, setIsFromTwitter] = useState(false);
+
+  useEffect(() => {
+    const referrer = document.referrer.toLowerCase();
+    setIsFromTwitter(
+      referrer.includes("twitter.com") ||
+        referrer.includes("t.co") ||
+        referrer.includes("x.com"),
+    );
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -80,9 +91,7 @@ export function Navbar() {
       label: (
         <span className="group relative flex items-center gap-2">
           cashbot
-          {/* Continuous pulsating gradient background */}
           <span className="absolute -inset-x-4 -inset-y-2 -z-10 animate-pulse rounded-lg bg-gradient-to-r from-mocha-mauve/20 via-mocha-pink/20 to-mocha-blue/20 blur-md"></span>
-          {/* Glowing border that's always visible but intensifies on hover */}
           <span className="absolute -inset-x-4 -inset-y-2 -z-10 rounded-lg border border-transparent bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-border opacity-20 transition-opacity duration-500 group-hover:opacity-40"></span>
           <kbd className="hidden rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs text-mocha-subtext sm:inline-block">
             {isMac ? "⌘" : "Ctrl"}J
@@ -120,7 +129,6 @@ export function Navbar() {
         )}
       >
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="rounded-lg p-2 text-mocha-subtext transition-colors hover:bg-mocha-surface/80 hover:text-mocha-text md:hidden"
@@ -132,7 +140,6 @@ export function Navbar() {
             )}
           </button>
 
-          {/* Desktop navigation */}
           <ul className="hidden items-center gap-6 md:flex">
             {mainNavItems.map((item, index) => (
               <li key={index}>
@@ -164,17 +171,26 @@ export function Navbar() {
             ))}
           </ul>
 
-          <button
-            onClick={() => setOpen(true)}
-            className="hidden rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text md:block"
-          >
-            <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs">
-              {isMac ? "⌘" : "Ctrl"}K
-            </kbd>
-          </button>
+          <div className="flex items-center gap-4">
+            {!isFromTwitter && (
+              <a
+                href="/static/Aakash_s_resume.pdf"
+                className="hidden rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text md:block"
+              >
+                resume
+              </a>
+            )}
+            <button
+              onClick={() => setOpen(true)}
+              className="hidden rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text md:block"
+            >
+              <kbd className="rounded bg-mocha-overlay/30 px-1.5 py-0.5 font-mono text-xs">
+                {isMac ? "⌘" : "Ctrl"}K
+              </kbd>
+            </button>
+          </div>
         </div>
 
-        {/* Mobile menu */}
         <div
           className={cn(
             "absolute left-0 right-0 top-full border-b border-mocha-overlay bg-mocha-base/95 backdrop-blur-sm transition-all duration-200 md:hidden",
