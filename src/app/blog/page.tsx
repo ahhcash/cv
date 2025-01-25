@@ -20,7 +20,7 @@ export default async function BlogPage() {
         <section className="mx-auto w-full max-w-4xl space-y-8">
           <div className="space-y-4">
             <h1 className="bg-gradient-to-r from-mocha-mauve via-mocha-pink to-mocha-blue bg-clip-text font-hack text-4xl font-bold text-transparent">
-              <TypedText text="ahhcash's blog" />
+              <TypedText text="ahhcash's blog." />
             </h1>
             <p className="font-mono text-base text-mocha-text">
               things that got me pondering.

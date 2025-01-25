@@ -1,7 +1,7 @@
 import { GitHubIcon, XIcon, CalendarIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
-  name: "hey, i'm aakash",
+  name: "hi. i'm aakash.",
   initials: "AS",
   location: "nyc",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
