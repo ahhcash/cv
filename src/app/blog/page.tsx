@@ -23,7 +23,7 @@ export default async function BlogPage() {
               <TypedText text="ahhcash's blog" />
             </h1>
             <p className="font-mono text-base text-mocha-text">
-              trying to yap my way through life
+              things that got me pondering.
             </p>
           </div>
 

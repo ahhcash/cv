@@ -174,7 +174,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             {!isFromTwitter && (
               <a
-                href="/static/Aakash_s_resume.pdf"
+                href="/static/resume.pdf"
                 className="hidden rounded px-3 py-2 font-mono text-sm text-mocha-subtext transition-all duration-200 hover:bg-mocha-surface/80 hover:text-mocha-text md:block"
               >
                 resume
