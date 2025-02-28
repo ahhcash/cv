@@ -13,16 +13,10 @@ interface Props {
   description: string;
   tags: readonly string[];
   link?: string;
-  bgImageUrl?: string;
+  bgImageUrl?: string; // We'll keep this in the props but not use it
 }
 
-export function ProjectCard({
-  title,
-  description,
-  tags,
-  link,
-  bgImageUrl,
-}: Props) {
+export function ProjectCard({ title, description, tags, link }: Props) {
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     if (link) {
       return (
@@ -41,45 +35,27 @@ export function ProjectCard({
 
   return (
     <Card
-      className={`border-mocha-overlay hover:border-mocha-lavender group relative flex overflow-hidden border p-4 transition-all duration-300 ${
-        link ? "hover:cursor-pointer" : ""
+      className={`group relative flex overflow-hidden border border-mocha-overlay bg-mocha-surface/40 p-4 backdrop-blur-sm transition-all duration-300 hover:border-mocha-lavender ${
+        link ? "hover:cursor-pointer hover:shadow-md" : ""
       }`}
     >
       <CardWrapper>
-        {/* Background Image with Overlay */}
-        {bgImageUrl && (
-          <>
-            <div
-              className="absolute inset-0 opacity-50 transition-all duration-300 group-hover:scale-105 group-hover:opacity-70"
-              style={{
-                backgroundImage: `url(${bgImageUrl})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                transform: "scale(1.02)",
-              }}
-            />
-            <div className="from-mocha-surface/50 to-mocha-surface/70 group-hover:from-mocha-surface/40 group-hover:to-mocha-surface/60 absolute inset-0 bg-gradient-to-b transition-all duration-300" />
-          </>
-        )}
-
-        {/* Content */}
         <div className="relative flex flex-1 flex-col">
           <CardHeader>
             <div className="space-y-1.5">
-              <CardTitle className="text-mocha-text hover:bg-mocha-surface/20 rounded p-1 text-lg transition-all duration-300 hover:backdrop-blur-sm">
+              <CardTitle className="rounded p-1 text-lg text-mocha-text transition-all duration-300 group-hover:text-mocha-lavender">
                 {title}{" "}
                 {link && (
                   <span className="bg-mocha-green ml-1.5 inline-block size-1.5 rounded-full"></span>
                 )}
               </CardTitle>
-              <div className="text-mocha-subtext hover:bg-mocha-surface/20 hidden rounded p-1 font-mono text-sm underline transition-all duration-300 hover:backdrop-blur-sm print:visible">
+              <div className="hidden rounded p-1 font-mono text-sm text-mocha-subtext underline transition-all duration-300 print:visible">
                 {link
                   ?.replace("https://", "")
                   .replace("www.", "")
                   .replace("/", "")}
               </div>
-              <CardDescription className="text-mocha-subtext hover:bg-mocha-surface/20 rounded p-1 font-mono text-sm transition-all duration-300 hover:backdrop-blur-sm">
+              <CardDescription className="rounded p-1 font-mono text-sm text-mocha-subtext transition-all duration-300 group-hover:text-mocha-text">
                 {description}
               </CardDescription>
             </div>
@@ -88,7 +64,7 @@ export function ProjectCard({
             <div className="mt-2.5 flex flex-wrap gap-1.5">
               {tags.map((tag) => (
                 <Badge
-                  className="bg-mocha-surface/30 text-mocha-blue hover:bg-mocha-surface/40 pointer-events-none px-1.5 py-0.5 text-xs transition-all duration-300 hover:backdrop-blur-sm"
+                  className="pointer-events-none bg-mocha-surface/50 px-1.5 py-0.5 text-xs text-mocha-blue transition-all duration-300 hover:bg-mocha-surface/70"
                   key={tag}
                 >
                   {tag}
