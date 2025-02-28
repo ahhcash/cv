@@ -74,10 +74,11 @@ export default function Page() {
               </Avatar>
             </div>
 
-            <Section title="hire me">
-              <p className="text-pretty font-mono text-base text-mocha-text">
-                {RESUME_DATA.hireMe}
-              </p>
+            <Section title="me">
+              <p
+                className="text-pretty font-mono text-base text-mocha-text"
+                dangerouslySetInnerHTML={{ __html: RESUME_DATA.hireMe }}
+              ></p>
             </Section>
 
             <Section title="work">

@@ -5,10 +5,9 @@ export const RESUME_DATA = {
   initials: "AS",
   location: "nyc",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
-  about:
-    "cs grad student @ nyu wrapping up in may 2025. in love with systems, ai & web dev. open to swe roles!",
+  about: "cs grad student @ nyu. open to swe roles starting jun '25",
   hireMe:
-    "engineering at heart with a sweet spot for distributed systems and databases. worked on scaling enterprise systems at cloudera, currently building side projects. wrapping up my master's at nyu in may 2025 - looking for full time swe roles!",
+    "building <a href='https://endorinlabs.com' target='_blank' rel='noopener noreferrer' class='text-mocha-blue hover:text-mocha-lavender transition-colors'>endorin labs</a> - creating privacy-focused ai agents using trusted execution environments.",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
