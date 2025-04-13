@@ -20,7 +20,7 @@ export const RESUME_DATA = {
       },
       {
         name: "X",
-        url: "https://twitter.com/aahhcash",
+        url: "https://twitter.com/ahcash",
         icon: XIcon,
       },
       {
