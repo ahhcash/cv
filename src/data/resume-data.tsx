@@ -6,8 +6,7 @@ export const RESUME_DATA = {
   location: "nyc",
   locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
   about: "cs grad student @ nyu. open to swe roles starting jun '25",
-  hireMe:
-    "building <a href='https://endorinlabs.com' target='_blank' rel='noopener noreferrer' class='text-mocha-blue hover:text-mocha-lavender transition-colors'>endorin labs</a> - creating privacy-focused ai agents using trusted execution environments.",
+  hireMe: "on the verge of <REDACTED>",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
