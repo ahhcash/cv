@@ -4,9 +4,9 @@ export const RESUME_DATA = {
   name: "hi. i'm aakash.",
   initials: "AS",
   location: "nyc",
-  locationLink: "https://maps.app.goo.gl/ACmfYfvgxgDCXd8F9",
-  about: "cs grad student @ nyu. open to swe roles starting jun '25",
-  hireMe: "on the verge of <REDACTED>",
+  locationLink: "https://maps.app.goo.gl/SpMzVoVpbPkuiCmy7",
+  about: "eng @ aws",
+  hireMe: "on the verge of [REDACTED]",
   avatarUrl: "https://avatars.githubusercontent.com/u/30623280?v=4",
   personalWebsiteUrl: "https://ahhcash.vercel.app",
   contact: {
@@ -45,12 +45,21 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: "aws",
+      link: "https://aws.com",
+      title: "software engineer",
+      badges: [],
+      start: "jul 2025",
+      end: "present",
+      description: "building enterprise RAG solutions with amazon Q business",
+    },
+    {
       company: "new york university",
       link: "https://nyu.edu",
       badges: [],
       title: "graduate course assistant",
       start: "sep 2024",
-      end: "present",
+      end: "may 2025",
       description:
         "CA for CSGY 9163 - application security. tech: c, python, django, kotlin, kubernetes",
     },
@@ -179,7 +188,7 @@ export const RESUME_DATA = {
         "vector embeddings",
       ],
       description:
-        "a multimodal search pipeline using mixpeek that lets you semantically search for movie trailers",
+        "a multimodal asscheeks search pipeline using mixpeek that lets you semantically search for movie trailers",
       link: {
         label: "GitHub",
         href: "https://scenewise.xyz",
